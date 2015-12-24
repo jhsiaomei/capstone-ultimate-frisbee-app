@@ -1,0 +1,13 @@
+<%= form_tag '/field_conditions', method: :post do %>
+  <div class="form-group">
+    <%= label_tag :field_id %>
+    <%= text_field_tag :field_id, @field_condition.field_id %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :condition %>
+    <%= text_field_tag :condition, @field_condition.condition %>
+  </div>
+  <div>
+    <%= button_tag 'Submit', class: "btn btn-default" %>
+  </div>
+<% end %>

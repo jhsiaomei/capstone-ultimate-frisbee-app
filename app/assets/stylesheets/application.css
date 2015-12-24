@@ -10,6 +10,15 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require theme/bootstrap-theme
+ *= require theme/bootstrap
+ *= require theme/flexslider
+ *= require theme/prettyPhoto
+ *= require theme/style
+ *= require theme/ionicons
+ *= require theme/simple-line-icons
+ *= require theme/settings-ie8
+ *= require theme/settings
  *= require_tree .
  *= require_self
  */

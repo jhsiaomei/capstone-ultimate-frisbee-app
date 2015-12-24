@@ -13,4 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require theme/contact_me
+//= require theme/imagesloaded.pkgd.min
+//= require theme/isotope.pkgd.min
+//= require theme/jqBootstrapValidation
+//= require theme/jquery.easing.1.3
+//= require theme/jquery.flexslider-min
+//= require theme/jquery.min
+//= require theme/jquery.prettyPhoto
+//= require theme/jquery.sticky
+//= require theme/moderniz.min
+//= require theme/parallax.min
+//= require theme/template
 //= require_tree .

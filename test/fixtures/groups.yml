@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  field_id_1: 1
+  field_id_2: 1
+  field_id_3: 1
+  group_type: MyString
+
+two:
+  name: MyString
+  description: MyText
+  field_id_1: 1
+  field_id_2: 1
+  field_id_3: 1
+  group_type: MyString

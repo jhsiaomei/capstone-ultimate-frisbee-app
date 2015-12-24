@@ -1,0 +1,13 @@
+<h2>Full List of Events:</h2>
+
+<% @events.each do |event| %>
+  <p><%= event.name %></p>
+  <p><%= event.event_type %></p>
+  <p><%= event.date_start %></p>
+  <p><%= event.date_stop %></p>
+  <p><%= event.time_start %></p>
+  <p><%= event.time_stop %></p>
+  <p><%= event.description %></p>
+  <p><%= event.field_id %></p>
+  <hr>
+<% end %>

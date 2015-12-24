@@ -1,0 +1,10 @@
+<p><%= @event.name %></p>
+<p><%= @event.event_type %></p>
+<p><%= @event.date_start %></p>
+<p><%= @event.date_stop %></p>
+<p><%= @event.time_start %></p>
+<p><%= @event.time_stop %></p>
+<p><%= @event.description %></p>
+<p><%= @event.field_id %></p>
+<hr>
+<%= link_to 'Delete this Event', "/events/#{@event.id}", method: :delete %>

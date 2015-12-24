@@ -1,0 +1,9 @@
+<p><%= @group.name %></p>
+<p><%= @group.group_type %></p>
+<p><%= @group.description %></p>
+<p><%= @group.field_id_1 %></p>
+<p><%= @group.field_id_2 %></p>
+<p><%= @group.field_id_3 %></p>
+<hr>
+<div><%= link_to "Edit this Group", "/groups/#{@group.id}/edit", method: :get %></div>
+<div><%= link_to "Delete this Group", "/groups/#{@group.id}", method: :delete %></div>

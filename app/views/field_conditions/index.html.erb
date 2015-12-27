@@ -1,0 +1,12 @@
+<h2>Full List of Groups:</h2>
+
+<% @field_conditions.each do |field_condition| %>
+  <p>Condition: <%= field_condition.condition %></p>
+  <p>Field ID: <%= field_condition.id %></p>
+  <p>Reported by User: <%= field_condition.user_id %></p>
+  <hr>
+<% end %>
+
+<div><%= link_to "Add New Condition", "/field_conditions/new", method: :get %></div>
+
+<div><%= link_to "Sign Out", "/users/sign_out", method: :delete %></div>

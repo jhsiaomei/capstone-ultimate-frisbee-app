@@ -1,4 +1,4 @@
-<%= form_tag '/field_conditions', method: :post do %>
+<%= form_tag '/field_conditions/#{@field_condition.id}', method: :post do %>
   <div class="form-group">
     <%= label_tag :field_id %>
     <%= text_field_tag :field_id, @field_condition.field_id %>

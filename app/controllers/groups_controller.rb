@@ -38,7 +38,6 @@ class GroupsController < ApplicationController
     @group = Group.find_by(id: params[:id])
     @group.update(
       name: params[:name],
-      admin_id: params[:admin_id],
       description: params[:description],
       field_id_1: params[:field_id_1],
       field_id_2: params[:field_id_2],

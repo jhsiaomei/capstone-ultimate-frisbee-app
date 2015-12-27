@@ -10,7 +10,8 @@ class FieldConditionsController < ApplicationController
   def create
     @field_condition = FieldCondition.new(
       field_id: params[:field_id],
-      condition: params[:condition]
+      condition: params[:condition],
+      user_id: current_user.id
       )
     @field_condition.save
 
@@ -22,9 +23,16 @@ class FieldConditionsController < ApplicationController
   end
 
   def edit
+    @field_condition = FieldCondition.find_by(id: params[:id])
   end
 
   def update
+    @field_condition = FieldCondition.find_by(id: params[:id])
+    @field_condition.update(
+      field_id: params[:field_id],
+      condition: params[:condition]
+      )
+    redirect_to "/field_condition/#{@field_condition.id}"
   end
 
   def destroy

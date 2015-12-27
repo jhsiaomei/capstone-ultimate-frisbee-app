@@ -18,6 +18,7 @@ class FieldConditionsController < ApplicationController
   end
 
   def show
+    @field_condition = FieldCondition.find_by(id: params[:id])
   end
 
   def edit

@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :groups, through: :user_groups
   has_many :events, through: :user_events
+  has_many :field_conditions
 end

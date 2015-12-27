@@ -11,10 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151224015158) do
+ActiveRecord::Schema.define(version: 20151227200140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.string   "event_type"
+    t.date     "date_start"
+    t.date     "date_stop"
+    t.time     "time_start"
+    t.time     "time_stop"
+    t.text     "description"
+    t.string   "field_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "field_conditions", force: :cascade do |t|
+    t.string   "condition"
+    t.string   "field_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fields", force: :cascade do |t|
+    t.string   "name"
+    t.string   "intersection"
+    t.string   "street_number"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -26,5 +58,39 @@ ActiveRecord::Schema.define(version: 20151224015158) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "user_events", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "event_id"
+    t.boolean  "is_admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_groups", force: :cascade do |t|
+    t.string   "user_id"
+    t.string   "group_id"
+    t.boolean  "is_admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

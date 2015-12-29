@@ -15,7 +15,7 @@ class FieldConditionsController < ApplicationController
       )
     @field_condition.save
 
-    redirect_to "/"
+    redirect_to "/field_conditions"
   end
 
   def show
@@ -32,7 +32,7 @@ class FieldConditionsController < ApplicationController
       field_id: params[:field_id],
       condition: params[:condition]
       )
-    redirect_to "/field_condition/#{@field_condition.id}"
+    redirect_to "/field_conditions/#{@field_condition.id}"
   end
 
   def destroy

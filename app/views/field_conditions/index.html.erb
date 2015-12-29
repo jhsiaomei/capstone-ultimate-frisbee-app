@@ -1,8 +1,8 @@
-<h2>Full List of Groups:</h2>
+<h2>Field Conditions:</h2>
 
 <% @field_conditions.each do |field_condition| %>
-  <p>Condition: <%= field_condition.condition %></p>
-  <p>Field ID: <%= field_condition.id %></p>
+  <p>Condition: <a href="/field_conditions/<%= field_condition.id %>"><%= field_condition.condition %></a></p>
+  <p>Field ID: <%= field_condition.field_id %></p>
   <p>Reported by User: <%= field_condition.user_id %></p>
   <hr>
 <% end %>

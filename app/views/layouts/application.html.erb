@@ -46,19 +46,17 @@
             </div><!--/.container-fluid -->
         </nav>
 
-        <div class="container">
-          <div>
-            <% flash.each do |name, message| %>
-              <div class="alert alert-<%= name %> alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><%= message %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-
         <div class="container section-padding">
-            <%= yield %>
+            <div class="container">
+                <% flash.each do |type, message| %>
+                  <div class="alert <%= type %> alert-dismissible fade in">
+                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <%= message %>
+                  </div>
+                <% end %>
+            </div>
         </div>
+        <%= yield %>
 
         <footer class="footer">
             <div class="container text-center">

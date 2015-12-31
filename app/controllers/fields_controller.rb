@@ -1,4 +1,6 @@
 class FieldsController < ApplicationController
+  before_action :require_login!
+
   def index
     @fields = Field.all
   end

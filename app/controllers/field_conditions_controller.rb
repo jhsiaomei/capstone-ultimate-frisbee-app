@@ -1,4 +1,6 @@
 class FieldConditionsController < ApplicationController
+  before_action :require_login!
+
   def index
     @field_conditions = FieldCondition.all
   end

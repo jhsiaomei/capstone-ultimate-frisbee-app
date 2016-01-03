@@ -9,5 +9,6 @@
   <p><%= event.time_stop %></p>
   <p><%= event.description %></p>
   <p><%= event.field_id %></p>
+  <p><%= link_to "Join this event!", user_events_path(:event_id => event.id),method: :post %></p>
   <hr>
-<% end %>
+ <% end %>

@@ -6,14 +6,6 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = Group.create(
-      name: params[:name],
-      description: params[:description],
-      field_id_1: params[:field_id_1],
-      field_id_2: params[:field_id_2],
-      field_id_3: params[:field_id_3],
-      group_type: params[:group_type],
-      )
   end
 
   def create

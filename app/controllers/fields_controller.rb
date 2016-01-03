@@ -3,6 +3,7 @@ class FieldsController < ApplicationController
 
   def index
     @fields = Field.all
+    @active_fields = "active"
   end
 
   def new

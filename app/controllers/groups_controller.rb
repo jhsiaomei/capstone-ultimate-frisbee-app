@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    @active_groups = "active"
   end
 
   def new

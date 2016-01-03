@@ -12,7 +12,7 @@ class UserGroupsController < ApplicationController
       )
   
     flash[:success] = "You joined this group!"
-    redirect_to "/groups"
+    redirect_to "/groups/#{@user_group.group_id}"
   end
 
   def show

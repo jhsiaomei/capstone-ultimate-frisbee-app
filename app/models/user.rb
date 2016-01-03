@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :field_conditions
 
   def timeout_in
-    5.minutes
+    # 30.minutes
   end
 
 end

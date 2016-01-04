@@ -26,4 +26,6 @@
 //= require theme/moderniz.min
 //= require theme/parallax.min
 //= require theme/template
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .

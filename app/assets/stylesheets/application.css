@@ -19,6 +19,7 @@
  *= require theme/simple-line-icons
  *= require theme/settings-ie8
  *= require theme/settings
+ *= require bootstrap-datetimepicker
  *= require_tree .
  *= require_self
  */

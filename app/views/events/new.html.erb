@@ -7,21 +7,43 @@
     <%= label_tag :event_type %>
     <%= text_field_tag :event_type, @event.event_type %>
   </div>
-  <div class="form-group">
-    <%= label_tag :date_start %>
-    <%= text_field_tag :date_start, @event.date_start %>
+  <div class="container">
+      <div class="row">
+          <div class='col-sm-3'>
+              <div class="form-group">
+                  <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' class="form-control" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+              </div>
+          </div>
+          <script type="text/javascript">
+              $(function () {
+                  $('#datetimepicker1').datetimepicker();
+              }());
+          </script>
+      </div>
   </div>
-  <div class="form-group">
-    <%= label_tag :date_stop %>
-    <%= text_field_tag :date_stop, @event.date_stop %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :time_start %>
-    <%= text_field_tag :time_start, @event.time_start %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :time_stop %>
-    <%= text_field_tag :time_stop, @event.time_stop %>
+  <div class="container">
+      <div class="row">
+          <div class='col-sm-3'>
+              <div class="form-group">
+                  <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' class="form-control" />
+                      <span class="input-group-addon">
+                          <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                  </div>
+              </div>
+          </div>
+          <script type="text/javascript">
+              $(function () {
+                  $('#datetimepicker1').datetimepicker();
+              }());
+          </script>
+      </div>
   </div>
   <div class="form-group">
     <%= label_tag :description %>
@@ -36,23 +58,3 @@
   </div>
 <% end %>
 
-<div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                console.log('hello');
-                $('#datetimepicker1').datetimepicker();
-            }());
-        </script>
-    </div>
-</div>

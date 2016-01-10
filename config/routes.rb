@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   
   get '/' => 'pages#index'
 
+  get '/dashboards/:id' => 'dashboards#show'
+
   get '/groups' => 'groups#index'
   get '/groups/new' => 'groups#new'
   post '/groups' => 'groups#create'

@@ -1,60 +1,66 @@
 <%= form_tag '/events', method: :post do %>
-  <div class="form-group">
-    <%= label_tag :name %>
-    <%= text_field_tag :name, @event.name %>
+  <div class="container form-group">
+    <label>Name</label> 
+    <%= text_field_tag :name, @event.name, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= label_tag :event_type %>
-    <%= text_field_tag :event_type, @event.event_type %>
+  <div class="container form-group">
+    <div class="row">
+      <label class="col-md-6">Event Type</label>
+      <label class="col-md-6">Field</label>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="event_type">
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" name="field_id">
+      </div>
+    </div>
   </div>
   <div class="container">
-      <div class="row">
-          <div class='col-sm-3'>
-              <div class="form-group">
-                  <div class='input-group date' id='datetimepicker1'>
-                      <input type='text' class="form-control" />
-                      <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                      </span>
-                  </div>
-              </div>
+    <div class="row">
+      <label class="col-md-6">Date/Time Begin</label>
+      <label class="col-md-6">Date/Time End</label>
+    </div>
+    <div class="row">
+      <div class='col-md-6'>
+        <div class="form-group">
+          <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" name='datetime'>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
           </div>
-          <script type="text/javascript">
-              $(function () {
-                  $('#datetimepicker1').datetimepicker();
-              }());
-          </script>
+        </div>
       </div>
-  </div>
-  <div class="container">
-      <div class="row">
-          <div class='col-sm-3'>
-              <div class="form-group">
-                  <div class='input-group date' id='datetimepicker1'>
-                      <input type='text' class="form-control" />
-                      <span class="input-group-addon">
-                          <span class="glyphicon glyphicon-calendar"></span>
-                      </span>
-                  </div>
-              </div>
+      <script type="text/javascript">
+        $(function () {
+        $('#datetimepicker1').datetimepicker();
+      }());
+      </script>
+      <div class='col-md-6'>
+        <div class="form-group">
+          <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" name='datetime'>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
           </div>
-          <script type="text/javascript">
-              $(function () {
-                  $('#datetimepicker1').datetimepicker();
-              }());
-          </script>
+        </div>
       </div>
+      <script type="text/javascript">
+        $(function () {
+        $('#datetimepicker1').datetimepicker();
+      }());
+      </script>
+    </div>
   </div>
-  <div class="form-group">
+  <div class="container form-group">
     <%= label_tag :description %>
-    <%= text_field_tag :description, @event.description %>
+    <%= text_area_tag :description, @event.description, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= label_tag :field_id %>
-    <%= text_field_tag :field_id, @event.field_id %>
-  </div>
-  <div>
-    <%= button_tag 'Submit', class: "btn btn-default" %>
+  <div class="container">
+    <%= button_tag 'Submit', class: "btn btn-default"%>
   </div>
 <% end %>
 

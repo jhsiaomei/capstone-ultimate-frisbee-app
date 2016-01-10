@@ -1,14 +1,17 @@
 <h2>Full List of Events:</h2>
 
-<% @events.each do |event| %>
-  <p><%= event.name %></p>
-  <p><%= event.event_type %></p>
-  <p><%= event.date_start %></p>
-  <p><%= event.date_stop %></p>
-  <p><%= event.time_start %></p>
-  <p><%= event.time_stop %></p>
-  <p><%= event.description %></p>
-  <p><%= event.field_id %></p>
-  <p><%= link_to "Join this event!", user_events_path(:event_id => event.id),method: :post %></p>
+<% @upcoming_events.each do |upcoming_event| %>
+  <p><%= upcoming_event.name %></p>
+  <p><%= upcoming_event.id %></p>
+  <p><%= upcoming_event.event_type %></p>
+  <p><%= upcoming_event.field_id %></p>
+  <p><%= upcoming_event.description %></p>
+  <% upcoming_event.event_times.each do |event_time| %>
+    <p>Date/Time Start: <%= event_time.display_start_time %></p>
+    <p>Date/Time Stop: <%= event_time.display_stop_time %></p>
+  <% end %>
+  <p><%= link_to "Join this event!", user_events_path(:event_id => upcoming_event.id),method: :post %></p>
   <hr>
  <% end %>
+
+

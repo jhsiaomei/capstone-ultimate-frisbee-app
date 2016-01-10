@@ -3,7 +3,8 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-    @active_events = "active"
+    @upcoming_events_times = EventTime.where("start_datetime >= ?", Date.today)
+    @upcoming_events = @upcoming_events_times.map {|upcoming_events_time| Event.find(upcoming_events_time.event.id)}.to_set
   end
 
   def new
@@ -19,10 +20,12 @@ class EventsController < ApplicationController
       )
     @event.save
 
-    @event_time = EventTime.create(
+    @event_time = EventTime.new(
+      event_id: @event.id,
       start_datetime: params[:start_datetime],
       stop_datetime: params[:stop_datetime]
       )
+    @event_time.save
 
     @user_event = UserEvent.create(
       user_id: current_user.id,

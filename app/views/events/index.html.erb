@@ -1,10 +1,11 @@
 <h2>Full List of Events:</h2>
 
 <% @upcoming_events.each do |upcoming_event| %>
-  <p><%= upcoming_event.name %></p>
-  <p><%= upcoming_event.id %></p>
-  <p><%= upcoming_event.event_type %></p>
-  <p><%= upcoming_event.field_id %></p>
+  <p>Name: <%= upcoming_event.name %></p>
+  <div class="row">
+    <p class="col-md-6">Type: <%= upcoming_event.event_type %></p>
+    <p class="col-md-6">Field: <%= upcoming_event.field.name %></p>
+  </div>
   <p><%= upcoming_event.description %></p>
   <% upcoming_event.event_times.each do |event_time| %>
     <p>Date/Time Start: <%= event_time.display_start_time %></p>
@@ -12,6 +13,6 @@
   <% end %>
   <p><%= link_to "Join this event!", user_events_path(:event_id => upcoming_event.id),method: :post %></p>
   <hr>
- <% end %>
+<% end %>
 
 

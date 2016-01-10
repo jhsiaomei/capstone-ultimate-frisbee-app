@@ -19,7 +19,6 @@ class EventsController < ApplicationController
       description: params[:description]
       )
     @event.save
-
     @event_time = EventTime.new(
       event_id: @event.id,
       start_datetime: params[:start_datetime],

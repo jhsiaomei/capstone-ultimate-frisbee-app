@@ -14,14 +14,16 @@ class EventsController < ApplicationController
     @event = Event.new(
       name: params[:name],
       event_type: params[:event_type],
-      date_start: params[:date_start],
-      date_stop: params[:date_stop],
-      time_start: params[:time_start],
-      time_stop: params[:time_stop],
-      description: params[:description],
       field_id: params[:field_id],
+      description: params[:description]
       )
     @event.save
+
+    @event_time = EventTime.new(
+      start_datetime: params[:start_datetime],
+      stop_datetime: params[:stop_datetime]
+      )
+    @event_time.save
 
     redirect_to "/events"
   end

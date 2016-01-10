@@ -19,11 +19,16 @@ class EventsController < ApplicationController
       )
     @event.save
 
-    @event_time = EventTime.new(
+    @event_time = EventTime.create(
       start_datetime: params[:start_datetime],
       stop_datetime: params[:stop_datetime]
       )
-    @event_time.save
+
+    @user_event = UserEvent.create(
+      user_id: current_user.id,
+      event_id: @event.id,
+      is_admin: true
+      )
 
     redirect_to "/events"
   end

@@ -19,10 +19,14 @@ class EventsController < ApplicationController
       description: params[:description]
       )
     @event.save
+
+    start_datetime = DateTime.strptime(params[:start_datetime], "%m/%d/%Y %H:%M %P").to_time
+    stop_datetime = DateTime.strptime(params[:stop_datetime], "%m/%d/%Y %H:%M %P").to_time    
+
     @event_time = EventTime.new(
       event_id: @event.id,
-      start_datetime: params[:start_datetime],
-      stop_datetime: params[:stop_datetime]
+      start_datetime: start_datetime,
+      stop_datetime: stop_datetime
       )
     @event_time.save
 

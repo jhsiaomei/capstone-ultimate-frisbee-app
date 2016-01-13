@@ -1,9 +1,7 @@
 <p><%= @event.name %></p>
 <p><%= @event.event_type %></p>
-<p><%= @event.date_start %></p>
-<p><%= @event.date_stop %></p>
-<p><%= @event.time_start %></p>
-<p><%= @event.time_stop %></p>
+<p><%= @event.event_times.first.start_datetime %></p>
+<p><%= @event.event_times.first.stop_datetime %></p>
 <p><%= @event.description %></p>
 <p><%= @event.field_id %></p>
 <p><%= link_to "Join this event!", "/user_events", method: :post %></p>

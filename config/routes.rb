@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get '/fields/new' => 'fields#new'
   post '/fields' => 'fields#create'
   get '/fields/:id' => 'fields#show'
-  get '/fields/:id/edit' => 'fields#edit'
+  get '/fields/1/edit' => 'fields#edit'
   patch '/fields/:id' => 'fields#update'
   delete '/fields/:id' => 'fields#destroy'
 

@@ -15,13 +15,13 @@ class FieldsController < ApplicationController
       name: params[:name],
       intersection: params[:intersection],
       street_number: params[:street_number],
-      street_address: params[:street_address],
-      city: params[:city],
-      state: params[:state],
-      zip_code: params[:zip_code],
+      street_address: params[:route],
+      city: params[:locality],
+      state: params[:administrative_area_level_1],
+      zip_code: params[:postal_code],
       )
     @field.save
-    redirect_to '/'
+    redirect_to '/fields'
   end
 
   def show

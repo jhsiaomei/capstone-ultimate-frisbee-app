@@ -1,33 +1,102 @@
+
 <%= form_tag '/fields', method: :post do %>
+    <div id="locationField">
+      <input id="autocomplete" placeholder="Enter your address"
+             onFocus="geolocate()" type="text"></input>
+    </div>
   <div class="form-group">
     <%= label_tag :name %>
     <%= text_field_tag :name, @field.name %>
   </div>
   <div class="form-group">
-    <%= label_tag :intersection %>
-    <%= text_field_tag :intersection, @field.intersection %>
+    <%= label_tag :street_number, "Street" %>
+    <%= text_field_tag :street_number %>
   </div>
   <div class="form-group">
-    <%= label_tag :street_number %>
-    <%= text_field_tag :street_number, @field.street_number %>
+    <%= label_tag :route %>
+    <%= text_field_tag :route %>
   </div>
   <div class="form-group">
-    <%= label_tag :street_address %>
-    <%= text_field_tag :street_address, @field.street_address %>
+    <%= label_tag :locality %>
+    <%= text_field_tag :locality %>
   </div>
   <div class="form-group">
-    <%= label_tag :city %>
-    <%= text_field_tag :city, @field.city %>
+    <%= label_tag :administrative_area_level_1 %>
+    <%= text_field_tag :administrative_area_level_1 %>
   </div>
   <div class="form-group">
-    <%= label_tag :state %>
-    <%= text_field_tag :state, @field.state %>
+    <%= label_tag :country %>
+    <%= text_field_tag :country %>
   </div>
   <div class="form-group">
-    <%= label_tag :zip_code %>
-    <%= text_field_tag :zip_code, @field.zip_code %>
+    <%= label_tag :postal_code %>
+    <%= text_field_tag :postal_code %>
   </div>
   <div>
     <%= button_tag 'Submit', class: "btn btn-default" %>
   </div>
 <% end %>
+
+<script>
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+      {types: ['geocode']});
+
+  // When the user selects an address from the dropdown, populate the address
+  // fields in the form.
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function fillInAddress() {
+  // Get the place details from the autocomplete object.
+  var place = autocomplete.getPlace();
+
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+  }
+
+  // Get each component of the address from the place details
+  // and fill the corresponding field on the form.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+}
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
+</script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxciPqerBead0Ay4BDH1cy9hra0BFLfc&signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>

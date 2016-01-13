@@ -1,37 +1,68 @@
 <%= form_tag "/events/#{@event.id}", method: :patch do %>
-  <div class="form-group">
-    <%= label_tag :name %>
-    <%= text_field_tag :name, @event.name %>
+  <div class="container form-group">
+    <label>Name</label> 
+    <%= text_field_tag :name, @event.name, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= label_tag :event_type %>
-    <%= text_field_tag :event_type, @event.event_type %>
+  <div class="container form-group">
+    <div class="row">
+      <div class="col-md-6">
+        <label>Event Type</label>
+        <input type="text" class="form-control" name="event_type" value="<%= @event.event_type %>">
+      </div>
+      <div class="col-md-6">
+        <label>Field</label>
+        <input type="text" class="form-control" name="field_id" value="<%= @event.field_id %>">
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= label_tag :date_start %>
-    <%= text_field_tag :date_start, @event.date_start %>
+  <div class="container">
+    <div class="row">
+      <div class='col-md-6'>
+        <div class="form-group">
+          <label>Date/Time Begin</label>
+          <div class='input-group date' id='datetimepicker6'>
+            <input type='text' class="form-control" name="start_datetime"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="form-group">
+          <label>Date/Time End</label>
+          <div class='input-group date' id='datetimepicker7'>
+            <input type='text' class="form-control" name="stop_datetime"/>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= label_tag :date_stop %>
-    <%= text_field_tag :date_stop, @event.date_stop %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :time_start %>
-    <%= text_field_tag :time_start, @event.time_start %>
-  </div>
-  <div class="form-group">
-    <%= label_tag :time_stop %>
-    <%= text_field_tag :time_stop, @event.time_stop %>
-  </div>
-  <div class="form-group">
+  <script type="text/javascript">
+    $(function () {
+      $('#datetimepicker6').datetimepicker({
+        defaultDate: "<%= @event.event_times.first.start_datetime %>"
+      });
+      $('#datetimepicker7').datetimepicker({
+        defaultDate: "<%= @event.event_times.first.stop_datetime %>"
+      });
+      $("#datetimepicker6").on("dp.change", function (e) {
+        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+      });
+      $("#datetimepicker7").on("dp.change", function (e) {
+        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+      });
+    }());
+  </script>
+  <div class="container form-group">
     <%= label_tag :description %>
-    <%= text_field_tag :description, @event.description %>
+    <%= text_area_tag :description, @event.description, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= label_tag :field_id %>
-    <%= text_field_tag :field_id, @event.field_id %>
-  </div>
-  <div>
-    <%= button_tag 'Submit', class: "btn btn-default" %>
+  <div class="container">
+    <%= button_tag 'Submit', class: "btn btn-default"%>
   </div>
 <% end %>
+

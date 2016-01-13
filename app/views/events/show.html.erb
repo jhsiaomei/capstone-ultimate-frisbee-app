@@ -8,4 +8,5 @@
 <p><%= @event.field_id %></p>
 <p><%= link_to "Join this event!", "/user_events", method: :post %></p>
 <hr>
-<%= link_to 'Delete this Event', "/events/#{@event.id}", method: :delete %>
+<p><%= link_to 'Edit this Event', "/events/#{@event.id}/edit", method: :get %></p>
+<p><%= link_to 'Delete this Event', "/events/#{@event.id}", method: :delete %></p>

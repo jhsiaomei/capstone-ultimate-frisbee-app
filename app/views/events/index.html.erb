@@ -11,7 +11,9 @@
     <p>Date/Time Start: <%= event_time.display_start_time %></p>
     <p>Date/Time Stop: <%= event_time.display_stop_time %></p>
   <% end %>
-  <p><%= link_to "Join this event!", user_events_path(:event_id => upcoming_event.id),method: :post %></p>
+  <p><%= link_to "Join this event!", user_events_path(:event_id => upcoming_event.id), method: :post %></p>
+  <p><%= link_to "Edit this event!", "/events/#{upcoming_event.id}/edit", method: :get %></p>
+
   <hr>
 <% end %>
 

@@ -52,12 +52,17 @@ class EventsController < ApplicationController
     @event.update(
       name: params[:name],
       event_type: params[:event_type],
-      date_start: params[:date_start],
-      date_stop: params[:date_stop],
-      time_start: params[:time_start],
-      time_stop: params[:time_stop],
       description: params[:description],
       field_id: params[:field_id],
+      )
+
+    start_datetime = DateTime.strptime(params[:start_datetime], "%m/%d/%Y %H:%M %P").to_time
+    stop_datetime = DateTime.strptime(params[:stop_datetime], "%m/%d/%Y %H:%M %P").to_time    
+
+    @event_time = @event.event_times.first
+    @event_time.update(
+      start_datetime: start_datetime,
+      stop_datetime: stop_datetime
       )
     redirect_to "/events/#{@event.id}"
   end

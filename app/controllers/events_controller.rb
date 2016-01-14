@@ -40,15 +40,15 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find_by(id: params[:id])
+    @event = Event.find(params[:id])
   end
 
   def edit
-    @event = Event.find_by(id: params[:id])
+    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find_by(id: params[:id])
+    @event = Event.find(params[:id])
     @event.update(
       name: params[:name],
       event_type: params[:event_type],

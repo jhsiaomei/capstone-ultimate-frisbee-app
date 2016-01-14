@@ -29,10 +29,10 @@ Rails.application.routes.draw do
   patch '/fields/:id' => 'fields#update'
   delete '/fields/:id' => 'fields#destroy'
 
-  get '/field_conditions' => 'field_conditions#index'
+  # get '/field_conditions' => 'field_conditions#index'
   get '/field_conditions/new' => 'field_conditions#new'
   post '/field_conditions' => 'field_conditions#create'
-  get '/field_conditions/:id' => 'field_conditions#show'
+  # get '/field_conditions/:id' => 'field_conditions#show'
   get '/field_conditions/:id/edit' => 'field_conditions#edit'
   patch '/field_conditions/:id' => 'field_conditions#update'
   delete '/field_conditions/:id' => 'field_conditions#destroy'

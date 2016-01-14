@@ -1,3 +1,4 @@
+<h2>Add a new Event:</h2>
 <%= form_tag '/events', method: :post do %>
   <div class="container form-group">
     <label>Name</label> 
@@ -7,11 +8,21 @@
     <div class="row">
       <div class="col-md-6">
         <label>Event Type</label>
-        <input type="text" class="form-control" name="event_type">
+        <select class="form-control" name="event_type">
+            <option value="Pickup">Pickup</option>
+            <option value="League">League</option>
+            <option value="HAT Tournament">HAT Tournament</option>
+            <option value="BYOT Tournament">BYOT Tournament</option>
+            <option value="Other">Other (Elaborate in Description)</option>
+        </select>
       </div>
       <div class="col-md-6">
         <label>Field</label>
-        <input type="text" class="form-control" name="field_id">
+        <select class="form-control" name="field_id">
+            <% @fields.each do |field| %>
+              <option value="<%= field.id %>"><%= field.name %></option>
+            <% end %>
+        </select>
       </div>
     </div>
   </div>
@@ -61,6 +72,7 @@
   </div>
   <div class="container">
     <%= button_tag 'Submit', class: "btn btn-default"%>
+    <button class="btn btn-default" onclick="goBack()">Cancel</button>
   </div>
 <% end %>
 

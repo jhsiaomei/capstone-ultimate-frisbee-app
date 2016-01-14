@@ -9,6 +9,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @fields = Field.all
   end
 
   def create
@@ -45,6 +46,8 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @fields = Field.all
+
   end
 
   def update

@@ -5,17 +5,17 @@
  */
 
 
- $(window).scroll(function(){      
-        /* -------------------
-        Header Animation
-        ---------------------*/
-        if ($(this).scrollTop() > 50){  
-            $('.before-color').addClass("after-color");
-        }
-        else{
-            $('.before-color').removeClass("after-color");
-        }
-    });
+ // $(window).scroll(function(){      
+ //        /* -------------------
+ //        Header Animation
+ //        ---------------------*/
+ //        if ($(this).scrollTop() > 50){  
+ //            $('.before-color').addClass("after-color");
+ //        }
+ //        else{
+ //            $('.before-color').removeClass("after-color");
+ //        }
+ //    });
 
 //full width revolution
 var revapi;

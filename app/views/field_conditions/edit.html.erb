@@ -1,3 +1,4 @@
+<h3>Edit this Field Condition:</h3>
 <%= form_tag "/field_conditions/#{@field_condition.id}", method: :patch do %>
   <div class="form-group">
     <%= label_tag :field_id %>
@@ -12,3 +13,11 @@
     <%= button_tag 'Submit', class: "btn btn-default" %>
   </div>
 <% end %>
+<br>
+<div class="container">
+  <%= form_tag "/fields", method: :get do %>
+    <div class="form-group">
+      <%= button_tag 'Back', class: "btn btn-default" %>
+    </div>
+  <% end %>
+</div>

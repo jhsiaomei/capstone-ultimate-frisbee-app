@@ -46,8 +46,7 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    @fields = Field.all
-
+    @fields = Field.all    
   end
 
   def update

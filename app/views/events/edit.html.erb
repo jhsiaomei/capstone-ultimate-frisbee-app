@@ -8,18 +8,18 @@
       <div class="col-md-6">
         <label>Event Type</label>
         <select class="form-control selectpicker" name="event_type">
-            <option value="Pickup">Pickup</option>
-            <option value="League">League</option>
-            <option value="HAT Tournament">HAT Tournament</option>
-            <option value="BYOT Tournament">BYOT Tournament</option>
-            <option value="Other">Other (Elaborate in Description)</option>
+            <option class="event-type" value="Pickup">Pickup</option>
+            <option class="event-type" value="League">League</option>
+            <option class="event-type" value="HAT Tournament">HAT Tournament</option>
+            <option class="event-type" value="BYOT Tournament">BYOT Tournament</option>
+            <option class="event-type" value="Other">Other (Elaborate in Description)</option>
         </select>
       </div>
       <div class="col-md-6">
         <label>Field</label>
         <select class="form-control" name="field_id">
             <% @fields.each do |field| %>
-              <option value="<%= field.id %>"><%= field.name %></option>
+              <option class="field-id" value="<%= field.id %>"><%= field.name %></option>
             <% end %>
         </select>
       </div>
@@ -77,3 +77,21 @@
   </div>
 <% end %>
 
+<script type="text/javascript">
+$(document).ready(function () {
+  var types = $(".event-type");
+  for (var i = 0; i <= types.length; i++) {
+    var type = types[i];
+    if ($(type).val() === "<%= @event.event_type %>") {
+      type.setAttribute('selected', true);
+    }
+  }
+  var fields = $(".field-id");
+  for (var i = 0; i <= fields.length; i++) {
+    var field = fields[i];
+    if ($(field).val() === "<%= @event.field_id %>") {
+      field.setAttribute('selected', true);
+    }
+  }
+});
+</script>

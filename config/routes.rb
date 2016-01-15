@@ -52,4 +52,15 @@ Rails.application.routes.draw do
   get '/user_events/:id/edit' => 'user_events#edit'
   patch '/user_events/:id' => 'user_events#update'
   delete '/user_events/:id' => 'user_events#destroy'
+
+  namespace :api do
+    namespace :v1 do
+      get '/groups' => 'groups#index'
+      get '/events' => 'events#index'
+      get '/fields' => 'fields#index'
+      get '/field_conditions' => 'field_conditions#index'
+      get '/user_groups' => 'user_groups#index'
+      get '/user_events' => 'user_events#index'
+    end
+  end
 end

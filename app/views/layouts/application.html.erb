@@ -27,52 +27,102 @@
                         <li><a href="/groups">Groups</a></li>
                         <li><a href="/events">Events</a></li>
                         <li><a href="/fields">Fields</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> Access <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <% if user_signed_in? %>
-                                  <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
-                                  <li><a href="/users/sign_up">Sign Up</a></li>
-                                  <li><a href="/users/sign_in">Sign In</a></li>
+                        <% if user_signed_in? %>
+                          <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
+                        <% else %>
+                          <li><a href="/users/sign_in">Sign In</a></li>
 
-                                <% else %>
-                                  <!-- Modal -->
-                                  <li>
-                                    <a data-toggle="modal" href="#gridSystemModal">
-                                      Sign In
-                                    </a>
-                                    </div>
-                                  </li>
-                                  <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                          <h4 class="modal-title" id="gridModalLabel">Modal title</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                          <!-- Nav tabs -->
-                                          <ul class="nav nav-tabs" role="tablist">
-                                            <li class="nav-item">
-                                              <a class="nav-link active" data-toggle="tab" href="#sign_in" role="tab">Sign In</a>
-                                            </li>
-                                          </ul>
+                          <!-- Modal -->
+                          <li>
+                            <a data-toggle="modal" href="#gridSystemModal">
+                              Sign In
+                            </a>
+                            </div>
+                          </li>
+                          <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="gridModalLabel">Modal title</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <!-- Nav tabs -->
+                                  <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                      <a class="nav-link active" data-toggle="tab" href="#sign_in" role="tab">Sign In</a>
+                                    </li>
+                                  </ul>
 
-                                          <!-- Tab panes -->
-                                          <div class="tab-content">
-                                            <div class="tab-pane active" id="sign_in" role="tabpanel">...</div>
-                                            <div class="tab-pane" id="sign_up" role="tabpanel">...</div>
+                                  <!-- Tab panes -->
+                                  <div class="tab-content">
+                                    <div class="tab-pane active" id="sign_in" role="tabpanel">
+                                      <h2>Log in</h2> 
+                                        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                                          <div class="field">
+                                            <%= f.label :email %><br />
+                                            <%= f.email_field :email, autofocus: true %>
                                           </div>
+
+                                          <div class="field">
+                                            <%= f.label :password %><br />
+                                            <%= f.password_field :password, autocomplete: "off" %>
+                                          </div>
+
+                                          <% if devise_mapping.rememberable? -%>
+                                            <div class="field">
+                                              <%= f.check_box :remember_me %>
+                                              <%= f.label :remember_me %>
+                                            </div>
+                                          <% end -%>
+
+                                          <div class="actions">
+                                            <%= f.submit "Log in" %>
+                                          </div>
+                                        <% end %>
+
+                                        <%= render "devise/shared/links" %>
+                                    </div>
+                                    <div class="tab-pane" id="sign_up" role="tabpanel">
+                                      <h2>Sign up</h2>
+                                      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                                        <%= devise_error_messages! %>
+
+                                        <div class="field">
+                                          <%= f.label :email %><br />
+                                          <%= f.email_field :email, autofocus: true %>
                                         </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
+
+                                        <div class="field">
+                                          <%= f.label :password %>
+                                          <% if @minimum_password_length %>
+                                          <em>(<%= @minimum_password_length %> characters minimum)</em>
+                                          <% end %><br />
+                                          <%= f.password_field :password, autocomplete: "off" %>
                                         </div>
-                                      </div>
+
+                                        <div class="field">
+                                          <%= f.label :password_confirmation %><br />
+                                          <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                                        </div>
+
+                                        <div class="actions">
+                                          <%= f.submit "Sign up" %>
+                                        </div>
+                                      <% end %>
+
+                                      <%= render "devise/shared/links" %>
                                     </div>
                                   </div>
-                                <% end %>
-                           </ul>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
                         </li>
                     </ul>
                 </div><!--/.nav-collapse -->

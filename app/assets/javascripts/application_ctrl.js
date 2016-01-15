@@ -1,11 +1,25 @@
+/* global angular */
+(function() {
+  'use strict';
+  angular.module('app').controller('applicationCtrl', function($scope, $http) {
+    $scope.setup = function() {
+      $http.get('/api/v1/events').then(function(response) {
+        $scope.events = response.data;
+      });
+    };
+
+    
 
 
-angular.module['app'].controller('whateverCtrl', function($scope){
-  $scope.setup = function(){
-    get all the things from your database
-    look inside the event to select the field
-    jquery selector
-  }
-  
-  
-})
+
+
+
+
+
+
+
+
+
+
+  });
+})();

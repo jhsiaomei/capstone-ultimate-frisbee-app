@@ -54,10 +54,10 @@
   <script type="text/javascript">
     $(function () {
       $('#datetimepicker6').datetimepicker({
-        defaultDate: "<%= @event.event_times.first.start_datetime.advance(:hours => 6) %>"
+        defaultDate: "<%= @event.start_datetime.advance(:hours => 6) %>"
       });
       $('#datetimepicker7').datetimepicker({
-        defaultDate: "<%= @event.event_times.first.stop_datetime.advance(:hours => 6) %>"
+        defaultDate: "<%= @event.stop_datetime.advance(:hours => 6) %>"
       });
       $("#datetimepicker6").on("dp.change", function (e) {
         $('#datetimepicker7').data("DateTimePicker").minDate(e.date);

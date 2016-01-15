@@ -3,8 +3,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-    @upcoming_events_times = EventTime.where("start_datetime >= ?", Date.today)
-    @upcoming_events = @upcoming_events_times.map {|upcoming_events_time| Event.find(upcoming_events_time.event.id)}.to_set
   end
 
   def new
@@ -13,23 +11,18 @@ class EventsController < ApplicationController
   end
 
   def create
+    start_datetime = DateTime.strptime(params[:start_datetime], "%m/%d/%Y %H:%M %P").to_time
+    stop_datetime = DateTime.strptime(params[:stop_datetime], "%m/%d/%Y %H:%M %P").to_time    
+
     @event = Event.new(
       name: params[:name],
       event_type: params[:event_type],
       field_id: params[:field_id],
-      description: params[:description]
-      )
-    @event.save
-
-    start_datetime = DateTime.strptime(params[:start_datetime], "%m/%d/%Y %H:%M %P").to_time
-    stop_datetime = DateTime.strptime(params[:stop_datetime], "%m/%d/%Y %H:%M %P").to_time    
-
-    @event_time = EventTime.new(
-      event_id: @event.id,
+      description: params[:description],
       start_datetime: start_datetime,
       stop_datetime: stop_datetime
       )
-    @event_time.save
+    @event.save
 
     @user_event = UserEvent.create(
       user_id: current_user.id,
@@ -50,22 +43,19 @@ class EventsController < ApplicationController
   end
 
   def update
+    start_datetime = DateTime.strptime(params[:start_datetime], "%m/%d/%Y %H:%M %P").to_time
+    stop_datetime = DateTime.strptime(params[:stop_datetime], "%m/%d/%Y %H:%M %P").to_time    
+
     @event = Event.find(params[:id])
     @event.update(
       name: params[:name],
       event_type: params[:event_type],
       description: params[:description],
       field_id: params[:field_id],
-      )
-
-    start_datetime = DateTime.strptime(params[:start_datetime], "%m/%d/%Y %H:%M %P").to_time
-    stop_datetime = DateTime.strptime(params[:stop_datetime], "%m/%d/%Y %H:%M %P").to_time    
-
-    @event_time = @event.event_times.first
-    @event_time.update(
       start_datetime: start_datetime,
       stop_datetime: stop_datetime
       )
+
     redirect_to "/events/#{@event.id}"
   end
 

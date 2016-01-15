@@ -1,18 +1,16 @@
 <h2>Full List of Events:</h2>
 
-<% @upcoming_events.each do |upcoming_event| %>
-  <p>Name: <%= upcoming_event.name %></p>
+<% @events.each do |event| %>
+  <p>Name: <%= event.name %></p>
   <div class="row">
-    <p class="col-md-6">Type: <%= upcoming_event.event_type %></p>
-    <p class="col-md-6">Field: <%= upcoming_event.field.name %></p>
+    <p class="col-md-6">Type: <%= event.event_type %></p>
+    <p class="col-md-6">Field: <%= event.field.name %></p>
   </div>
-  <p><%= upcoming_event.description %></p>
-  <% upcoming_event.event_times.each do |event_time| %>
-    <p>Date/Time Start: <%= event_time.display_start_time %></p>
-    <p>Date/Time Stop: <%= event_time.display_stop_time %></p>
-  <% end %>
-  <p><%= link_to "Join this event!", user_events_path(:event_id => upcoming_event.id), method: :post %></p>
-  <p><%= link_to "Edit this event!", "/events/#{upcoming_event.id}/edit", method: :get %></p>
+  <p>Description: <%= event.description %></p>
+  <p>Date/Time Start: <%= event.start_datetime.strftime("%A, %B %d at %I:%M %p") %></p>
+  <p>Date/Time Stop: <%= event.stop_datetime.strftime("%A, %B %d at %I:%M %p") %></p>
+  <p><%= link_to "Join this event!", user_events_path(:event_id => event.id), method: :post %></p>
+  <p><%= link_to "Edit this event!", "/events/#{event.id}/edit", method: :get %></p>
 
   <hr>
 <% end %>

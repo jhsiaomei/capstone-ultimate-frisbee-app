@@ -5,6 +5,10 @@ class Field < ActiveRecord::Base
   after_validation :geocode
 
   def full_street_address
-    "#{street_number} #{street_address}, #{city}, #{state} #{zip_code}"
+    if intersection == "" 
+      "#{street_number} #{street_address}, #{city}, #{state} #{zip_code}"
+    else
+      "#{intersection}"
+    end
   end
 end

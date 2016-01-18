@@ -23,22 +23,49 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right scroll-to">
-                        <li class="<%= @active_home %>"><a href="/">Home</a></li>
-                        <li class="<%= @active_groups %>"><a href="/groups">Groups</a></li>
-                        <li class="<%= @active_events %>"><a href="/events">Events</a></li>
-                        <li class="<%= @active_fields %>"><a href="/fields">Fields</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"> Access <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <% if user_signed_in? %>
-                                  <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
-                                <% else %>
-                                  <li><a href="/users/sign_up">Sign Up</a></li>
-                                  <li><a href="/users/sign_in">Sign In</a></li>
-                                <% end %>
-                           </ul>
-                        </li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/groups">Groups</a></li>
+                        <li><a href="/events">Events</a></li>
+                        <li><a href="/fields">Fields</a></li>
+                        <% if user_signed_in? %>
+                          <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
+                        <% else %>
+                          <li><a href="/users/sign_in">Sign In</a></li>
 
+                          <!-- Modal -->
+                          <li>
+                            <a data-toggle="modal" href="#gridSystemModal">
+                              Sign In
+                            </a>
+                            </div>
+                          </li>
+                          <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="gridModalLabel">Modal title</h4>
+                                </div>
+                                <div class="modal-body">
+                                  <!-- Nav tabs -->
+                                  <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                      <a class="nav-link active" data-toggle="tab" href="#sign_in" role="tab">Sign In</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" data-toggle="tab" href="#sign_up" role="tab">Sign up</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        <% end %>
+                        </li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->

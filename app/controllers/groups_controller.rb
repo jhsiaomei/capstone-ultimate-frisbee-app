@@ -1,9 +1,8 @@
 class GroupsController < ApplicationController
-  before_action :require_login!
+  before_action :require_login!, except: [:index, :show]
 
   def index
     @groups = Group.all.order(:name)
-    @active_groups = "active"
   end
 
   def new
@@ -64,4 +63,12 @@ class GroupsController < ApplicationController
     flash[:notice] = "You deleted this event."
     redirect_to "/groups"
   end
+
+  private
+    def require_login!
+    unless current_user
+      redirect_to "/groups"
+    end
+  end
+
 end

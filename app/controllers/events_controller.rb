@@ -73,4 +73,12 @@ class EventsController < ApplicationController
     flash[:notice] = "You deleted this event."
     redirect_to '/events'
   end
+
+  private
+
+  def require_login!
+    unless current_user
+      redirect_to "/events"
+    end
+  end
 end

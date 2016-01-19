@@ -31,6 +31,7 @@ class EventsController < ApplicationController
       is_admin: true
       )
 
+    flash[:notice] = "You created this event."
     redirect_to "/events"
   end
 
@@ -57,12 +58,19 @@ class EventsController < ApplicationController
       stop_datetime: stop_datetime
       )
 
+    flash[:notice] = "You edited this event."
     redirect_to "/events/#{@event.id}"
   end
 
   def destroy
     event = Event.find_by(id: params[:id])
     event.destroy
+    user_events = UserEvent.where(event_id: event.id)
+    user_events.each do |user_event|
+      user_event.destroy
+    end
+
+    flash[:notice] = "You deleted this event."
     redirect_to '/events'
   end
 end

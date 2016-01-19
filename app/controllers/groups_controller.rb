@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
       is_admin: true
       )
 
-    flash[:success] = "You created this group!"
+    flash[:notice] = "You created this group."
     redirect_to "/groups/#{@group.id}"
   end
 
@@ -48,14 +48,20 @@ class GroupsController < ApplicationController
       field_id_3: params[:field_id_3],
       group_type: params[:group_type]
       )
+
+    flash[:notice] = "You edited this group."
     redirect_to "/groups/#{@group.id}"
   end
 
   def destroy
-    @group = Group.find_by(id: params[:id])
-    @group.destroy
-    @user_group = UserGroup.find_by(group_id: @group.id)
-    @user_group.destroy
+    group = Group.find_by(id: params[:id])
+    group.destroy
+    user_groups = UserGroup.where(group_id: group.id)
+    user_groups.each do |user_group|
+      user_group.destroy
+    end
+
+    flash[:notice] = "You deleted this event."
     redirect_to "/groups"
   end
 end

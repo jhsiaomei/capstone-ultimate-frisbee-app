@@ -38,6 +38,22 @@ Rails.application.routes.draw do
   patch '/field_conditions/:id' => 'field_conditions#update'
   # delete '/field_conditions/:id' => 'field_conditions#destroy'
 
+  # get '/user_groups' => 'user_groups#index'
+  # get '/user_groups/new' => 'user_groups#new'
+  post '/user_groups' => 'user_groups#create'
+  # get '/user_groups/:id' => 'user_groups#show'
+  # get '/user_groups/:id/edit' => 'user_groups#edit'
+  patch '/user_groups/:id' => 'user_groups#update'
+  delete '/user_groups/:id' => 'user_groups#destroy'
+
+  # get '/user_events' => 'user_events#index'
+  # get '/user_events/new' => 'user_events#new'
+  post '/user_events' => 'user_events#create'
+  # get '/user_events/:id' => 'user_events#show'
+  # get '/user_events/:id/edit' => 'user_events#edit'
+  patch '/user_events/:id' => 'user_events#update'
+  delete '/user_events/:id' => 'user_events#destroy'
+
   namespace :api do
     namespace :v1 do
       get '/groups' => 'groups#index'

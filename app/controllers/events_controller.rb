@@ -2,8 +2,8 @@ class EventsController < ApplicationController
   before_action :require_login!, except: [:index, :show]
 
   def index
-    @events = Event.where("start_datetime > current_timestamp")
-    @events = @events.order(:start_datetime)
+    events = Event.where("start_datetime > current_timestamp")
+    @events = events.order(:start_datetime)
   end
 
   def new

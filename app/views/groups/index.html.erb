@@ -1,13 +1,10 @@
-<h2>Full List of Groups:</h2>
+<h2>All Groups:</h2>
 
 <% @groups.each do |group| %>
-  <p><%= group.name %></p>
-  <p><%= group.group_type %></p>
-  <p><%= group.description %></p>
-  <p><%= group.field_id_1 %></p>
-  <p><%= group.field_id_2 %></p>
-  <p><%= group.field_id_3 %></p>
-  <p><%= link_to "Join this group!", user_groups_path(:group_id => group.id),method: :post %></p>
+  <p><strong>Name: </strong><%= group.name %></p>
+  <p><strong>Type: </strong><%= group.group_type %></p>
+  <p><strong>Description: </strong><%= group.description %></p>
+  <p><strong>Field: </strong><%= group.field.name %></p>
   <hr>
 <% end %>
 

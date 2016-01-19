@@ -4,8 +4,10 @@
 <p>Stop Date/Time: <%= @event.stop_datetime.strftime("%A, %B %d at %I:%M %p") %></p>
 <p><%= @event.description %></p>
 <p>Where: <%= @event.field.name %></p>
-<p><%= link_to "Join this event!", "/user_events", method: :post %></p>
+<%= form_tag "/user_events", method: :post do %>
+  <input name="event_id" value="<%= @event.id %>" type="hidden">
+  <%= button_tag "Join this event", class: "btn btn-default" %>
+<% end %>
 <hr>
 <p><%= link_to 'Edit this Event', "/events/#{@event.id}/edit", method: :get %></p>
 <p><%= link_to 'Delete this Event', "/events/#{@event.id}", method: :delete %></p>
-<button class="btn btn-default" onclick="goBack()">Back</button>

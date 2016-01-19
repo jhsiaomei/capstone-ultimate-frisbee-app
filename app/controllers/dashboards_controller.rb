@@ -4,6 +4,7 @@ class DashboardsController < ApplicationController
   end
 
   def show
-    
+    @user_events = current_user.events.where("start_datetime > current_timestamp")
+    @user_events = @user_events.order("start_datetime ASC")
   end
 end

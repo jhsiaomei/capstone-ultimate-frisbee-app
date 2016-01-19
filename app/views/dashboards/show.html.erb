@@ -1,7 +1,20 @@
-
-  <script>
-
-  </script>
-  <div id='calendar'>
-    
-  </div>
+<div id='calendar'>
+</div>
+<br />
+<% if @user_events != [] %>
+  <h3>Your upcoming events:</h3>
+  <% @user_events.each do |user_event| %>
+    <div class="well">
+    <p><strong><%= user_event.start_datetime.to_date.strftime("%A, %B %d") %>:</strong></p>
+    <p><strong>Name: </strong><%= user_event.name %></p>
+    <p><strong>Btart Time: </strong><%= user_event.start_datetime.to_time.strftime("%-I:%M %p") %></p>
+    <p><strong>Stop Time: </strong><%= user_event.stop_datetime.to_time.strftime("%-I:%M %p") %></p>
+    <p><strong>Event Type: </strong><%= user_event.event_type %></p>
+    <p><strong>Field: </strong><%= user_event.field.name %></p>
+    <p><strong>Description: </strong><%= user_event.description %></p>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <h3>You have no upcoming events.</h3>
+<% end %>

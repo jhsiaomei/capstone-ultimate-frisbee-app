@@ -11,7 +11,6 @@
   <p>Date/Time Stop: <%= event.stop_datetime.strftime("%A, %B %d at %I:%M %p") %></p>
   <p><%= link_to "Join this event!", user_events_path(:event_id => event.id), method: :post %></p>
   <p><%= link_to "Edit this event!", "/events/#{event.id}/edit", method: :get %></p>
-
   <hr>
 <% end %>
 

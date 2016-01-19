@@ -2,11 +2,12 @@ class GroupsController < ApplicationController
   before_action :require_login!
 
   def index
-    @groups = Group.all
+    @groups = Group.all.order(:name)
     @active_groups = "active"
   end
 
   def new
+    @fields = Field.all
   end
 
   def create
@@ -18,6 +19,13 @@ class GroupsController < ApplicationController
       field_id_3: params[:field_id_3],
       group_type: params[:group_type],
       )
+    @user_group = UserGroup.create(
+      user_id: current_user.id,
+      group_id: @group.id,
+      is_admin: true
+      )
+
+    flash[:success] = "You created this group!"
     redirect_to "/groups/#{@group.id}"
   end
 
@@ -26,7 +34,8 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find_by(id: params[:id])
+    @group = Group.find(params[:id])
+    @fields = Field.all
   end
 
   def update
@@ -45,6 +54,8 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find_by(id: params[:id])
     @group.destroy
+    @user_group = UserGroup.find_by(group_id: @group.id)
+    @user_group.destroy
     redirect_to "/groups"
   end
 end

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
+  has_many :user_groups
   has_many :groups, through: :user_groups
   has_many :user_events
   has_many :events, through: :user_events

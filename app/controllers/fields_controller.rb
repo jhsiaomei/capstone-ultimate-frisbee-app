@@ -1,5 +1,5 @@
 class FieldsController < ApplicationController
-  before_action :require_login!
+  before_action :require_login!, except: [:index, :show]
 
   def index
     @fields = Field.all
@@ -50,4 +50,13 @@ class FieldsController < ApplicationController
 
   def destroy
   end
+
+  private
+  
+  def require_login!
+    unless current_user
+      redirect_to "/fields"
+    end
+  end
+
 end

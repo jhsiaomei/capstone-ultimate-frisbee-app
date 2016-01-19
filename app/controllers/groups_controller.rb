@@ -65,6 +65,7 @@ class GroupsController < ApplicationController
   end
 
   private
+  
     def require_login!
     unless current_user
       redirect_to "/groups"

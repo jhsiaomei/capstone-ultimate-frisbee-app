@@ -20,6 +20,7 @@
  *= require theme/settings-ie8
  *= require theme/settings
  *= require bootstrap-datetimepicker
+ *= require fullcalendar
  *= require_tree .
  *= require_self
  */

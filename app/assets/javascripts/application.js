@@ -23,4 +23,6 @@
 //= require theme/parallax.min
 //= require moment
 //= require bootstrap-datetimepicker
+//= require lib/moment.min
+//= require fullcalendar/fullcalendar
 //= require_tree .

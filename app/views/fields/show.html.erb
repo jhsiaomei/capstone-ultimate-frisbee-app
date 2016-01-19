@@ -1,17 +1,65 @@
-<h3><%= @field.name %></h3>
-<p><%= @field_placeholder %></p>
-<br>
-<h4>Field Conditions:</h4>
-<% @field.field_conditions.each do |field_condition| %>
-  <p><%= field_condition.condition %></p>
-  <p><i>created on <%= field_condition.created_at %></i></p>
-  <hr>
-<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <h3><%= @field.name %></h3>
+    <% if @field.intersection != "" %>
+      <p><%= @field.intersection %></p>
+    <% else %>
+      <p><%= @field_placeholder %></p>
+    <% end %>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 300px;
+      }
+    </style>
+    <div id="map"></div>
+  </div>
+  <div class="col-md-6">
+    <h3>Field Conditions:</h3>
+    <% if @field.field_conditions == [] %>
+      <p>No conditions for this field have been reported.</p>
+    <% else %>
+      <% @field.field_conditions.each do |field_condition| %>
+        <p><%= field_condition.condition %></p>
+        <p><i>created on <%= field_condition.created_at %></i></p>
+        <hr>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+
+function initMap() {
+  var myLatLng = {lat: <%= @field.latitude %>, lng: <%= @field.longitude %>};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxciPqerBead0Ay4BDH1cy9hra0BFLfc
+&signed_in=true&callback=initMap"></script>
 
 <br>
 <form action="/field_conditions/new">
-  <input type="hidden" value="<%= @field.id %>" name="field_id">
-  <button class="btn btn-default" type="submit">Add a New Field Condition</button>
+    <input type="submit" class="btn btn-default" value="Add a Field Condition">
 </form>
 <form action="/fields/<%= @field.id %>/edit">
     <input type="submit" class="btn btn-default" value="Edit this Field">

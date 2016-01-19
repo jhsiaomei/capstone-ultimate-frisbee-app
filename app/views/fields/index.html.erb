@@ -1,5 +1,5 @@
 <% @fields.each do |field| %>
-  <h4><a href="/fields/<%= field.id %>"><%= field.name %></h4>
+  <h4><a href="/fields/<%= field.id %>"><%= field.name %></a></h4>
   <% if field.intersection != "" %>
     <p><%= field.intersection %></p>
   <% else %>

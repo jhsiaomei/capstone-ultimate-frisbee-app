@@ -22,7 +22,7 @@ class FieldConditionsController < ApplicationController
       )
     @field_condition.save
 
-    redirect_to "/field_conditions"
+    redirect_to "/fields/#{@field_condition.field_id}"
   end
 
   def show

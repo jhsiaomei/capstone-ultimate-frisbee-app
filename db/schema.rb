@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119061520) do
+ActiveRecord::Schema.define(version: 20160119232907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160119061520) do
     t.string   "name"
     t.string   "event_type"
     t.text     "description"
-    t.string   "field_id"
+    t.integer  "field_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.datetime "start_datetime"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 20160119061520) do
 
   create_table "field_conditions", force: :cascade do |t|
     t.string   "condition"
-    t.string   "field_id"
+    t.integer  "field_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "user_id"
+    t.integer  "user_id"
   end
 
   create_table "fields", force: :cascade do |t|

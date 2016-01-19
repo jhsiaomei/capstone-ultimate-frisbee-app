@@ -2,8 +2,7 @@ class FieldsController < ApplicationController
   before_action :require_login!, except: [:index, :show]
 
   def index
-    @fields = Field.all
-    @active_fields = "active"
+    @fields = Field.all.order(:name)
   end
 
   def new

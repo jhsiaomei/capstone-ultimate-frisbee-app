@@ -1,6 +1,9 @@
 <% @fields.each do |field| %>
   <h4><a href="/fields/<%= field.id %>"><%= field.name %></h4>
-  <p><%= field.intersection %></p>
-  <p><%= field.street_number %> <%= field.street_address %> | <%= field.city %>, <%= field.state %> <%= field.zip_code %></p>
-  <p>&nbsp</p>
+  <% if field.intersection != "" %>
+    <p><%= field.intersection %></p>
+  <% else %>
+    <p><%= field.street_number %> <%= field.street_address %> | <%= field.city %>, <%= field.state %> <%= field.zip_code %></p>
+  <% end %>
+  <hr>
 <% end %>

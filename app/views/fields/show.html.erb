@@ -9,6 +9,10 @@
 <% end %>
 
 <br>
+<form action="/field_conditions/new">
+  <input type="hidden" value="<%= @field.id %>" name="field_id">
+  <button class="btn btn-default" type="submit">Add a New Field Condition</button>
+</form>
 <form action="/fields/<%= @field.id %>/edit">
     <input type="submit" class="btn btn-default" value="Edit this Field">
 </form>

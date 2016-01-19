@@ -6,7 +6,12 @@ class FieldConditionsController < ApplicationController
   end
 
   def new
+    if params[:field_id]
+      @field_id = params[:field_id]
+    end
     @field_condition = FieldCondition.new
+    @fields = Field.all
+
   end
 
   def create
@@ -39,4 +44,11 @@ class FieldConditionsController < ApplicationController
 
   def destroy
   end
+
+  def require_login!
+    unless current_user
+      redirect_to "/fields"
+    end
+  end
+  
 end

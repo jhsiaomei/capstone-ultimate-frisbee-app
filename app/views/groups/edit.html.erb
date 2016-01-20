@@ -6,29 +6,11 @@
     <%= text_field_tag :name, @group.name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <label>Field 1</label>
-    <select class="form-control" name="field_id_1" required>
+    <label>Field</label>
+    <select class="form-control" name="field_id" required>
       <option>No field selected</option>
       <% @fields.each do |field| %>
-        <option value="<%= field.id %>" class="field-id-1"><%= field.name %></option>
-      <% end %>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Field 2 (optional)</label>
-    <select class="form-control" name="field_id_2">
-      <option value="">No field selected</option>
-      <% @fields.each do |field| %>
-        <option value="<%= field.id %>" class="field-id-2"><%= field.name %></option>
-      <% end %>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Field 3 (optional)</label>
-    <select class="form-control" name="field_id_3">
-      <option value="">No field selected</option>
-      <% @fields.each do |field| %>
-        <option value="<%= field.id %>" class="field-id-3"><%= field.name %></option>
+        <option value="<%= field.id %>" class="field-id"><%= field.name %></option>
       <% end %>
     </select>
   </div>
@@ -53,24 +35,12 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-  var fields = $(".field-id-1");
+  var fields = $(".field-id");
   for (var i = 0; i <= fields.length; i++) {
     var field = fields[i];
-    if ($(field).val() === "<%= @group.field_id_1 %>") {
+    if ($(field).val() === "<%= @group.field_id %>") {
       field.setAttribute('selected', true);
     }
   }
-  var fields = $(".field-id-2");
-  for (var i = 0; i <= fields.length; i++) {
-    var field = fields[i];
-    if ($(field).val() === "<%= @group.field_id_2 %>") {
-      field.setAttribute('selected', true);
-    }
-  }  var fields = $(".field-id-3");
-  for (var i = 0; i <= fields.length; i++) {
-    var field = fields[i];
-    if ($(field).val() === "<%= @group.field_id_3 %>") {
-      field.setAttribute('selected', true);
-    }
-  }});
+});
 </script>

@@ -1,7 +1,7 @@
 <h2>All Groups:</h2>
 
 <% @groups.each do |group| %>
-  <p><strong>Name: </strong><%= group.name %></p>
+  <p><a href="/groups/<%= group.id %>"><strong><%= group.name %></strong></a></p>
   <p><strong>Type: </strong><%= group.group_type %></p>
   <p><strong>Description: </strong><%= group.description %></p>
   <p><strong>Field: </strong><%= group.field.name %></p>
@@ -10,4 +10,3 @@
 
 <div><%= link_to "Add New Group", "/groups/new", method: :get %></div>
 
-<div><%= link_to "Sign Out", "/users/sign_out", method: :delete %></div>

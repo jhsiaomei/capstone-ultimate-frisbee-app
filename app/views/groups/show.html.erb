@@ -1,9 +1,49 @@
-<p><%= @group.name %></p>
-<p><%= @group.group_type %></p>
-<p><%= @group.description %></p>
-<p><%= @group.field_id_1 %></p>
-<p><%= @group.field_id_2 %></p>
-<p><%= @group.field_id_3 %></p>
+<div class="row">
+  <div class="col-md-6">
+    <p><strong><%= @group.name %></strong></p>
+    <p><strong>Type: </strong><%= @group.group_type %></p>
+    <p><strong>Description: </strong><%= @group.description %></p>
+    <p><strong>Field: </strong><%= @group.field.name %></p>
+  </div>
+  <div class="col-md-6">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #showmap {
+        height: 300px;
+      }
+    </style>
+    <div id="showmap"></div>
+  </div>
+</div>
 <hr>
 <div><%= link_to "Edit this Group", "/groups/#{@group.id}/edit", method: :get %></div>
 <div><%= link_to "Delete this Group", "/groups/#{@group.id}", method: :delete %></div>
+
+<script>
+
+function initMap() {
+  var myLatLng = {lat: <%= @field.latitude %>, lng: <%= @field.longitude %>};
+
+  var showmap = new google.maps.Map(document.getElementById('showmap'), {
+    zoom: 15,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: showmap,
+    title: 'Hello World!'
+  });
+}
+
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxciPqerBead0Ay4BDH1cy9hra0BFLfc
+&signed_in=true&callback=initMap"></script>

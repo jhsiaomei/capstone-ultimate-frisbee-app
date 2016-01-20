@@ -6,27 +6,9 @@
     <%= text_field_tag :name, nil, class: "form-control" %>
   </div>
   <div class="form-group">
-    <label>Field 1</label>
-    <select class="form-control" name="field_id_1" required>
+    <label>Field</label>
+    <select class="form-control" name="field_id" required>
       <option>No field selected</option>
-      <% @fields.each do |field| %>
-        <option value="<%= field.id %>"><%= field.name %></option>
-      <% end %>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Field 2 (optional)</label>
-    <select class="form-control" name="field_id_2">
-      <option value="">No field selected</option>
-      <% @fields.each do |field| %>
-        <option value="<%= field.id %>"><%= field.name %></option>
-      <% end %>
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Field 3 (optional)</label>
-    <select class="form-control" name="field_id_3">
-      <option value="">No field selected</option>
       <% @fields.each do |field| %>
         <option value="<%= field.id %>"><%= field.name %></option>
       <% end %>

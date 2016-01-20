@@ -13,9 +13,7 @@ class GroupsController < ApplicationController
     @group = Group.create(
       name: params[:name],
       description: params[:description],
-      field_id_1: params[:field_id_1],
-      field_id_2: params[:field_id_2],
-      field_id_3: params[:field_id_3],
+      field_id: params[:field_id],
       group_type: params[:group_type],
       )
     @user_group = UserGroup.create(
@@ -29,7 +27,8 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find_by(id: params[:id])
+    @group = Group.find(params[:id])
+    @field = @group.field
   end
 
   def edit
@@ -38,13 +37,11 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group = Group.find_by(id: params[:id])
+    @group = Group.find(params[:id])
     @group.update(
       name: params[:name],
       description: params[:description],
-      field_id_1: params[:field_id_1],
-      field_id_2: params[:field_id_2],
-      field_id_3: params[:field_id_3],
+      field_id: params[:field_id],
       group_type: params[:group_type]
       )
 
@@ -53,7 +50,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    group = Group.find_by(id: params[:id])
+    group = Group.find(params[:id])
     group.destroy
     user_groups = UserGroup.where(group_id: group.id)
     user_groups.each do |user_group|

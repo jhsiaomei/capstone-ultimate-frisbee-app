@@ -1,7 +1,6 @@
 // Calendar
 $(document).ready(function() {
-  $.get('/api/v1/events.json', function(data) {
-    console.log(data.events);
+  $.get('/api/v1/user_events.json', function(data) {
     $('#calendar').fullCalendar({
       height: 450,
       editable: true,

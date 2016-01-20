@@ -13,7 +13,6 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require turbolinks
 //= require theme/imagesloaded.pkgd.min
 //= require theme/isotope.pkgd.min
 //= require theme/jquery.easing.1.3

@@ -28,7 +28,7 @@
     <% else %>
       <% @field.field_conditions.each do |field_condition| %>
         <p><%= field_condition.condition %></p>
-        <p><i>created on <%= field_condition.created_at %></i></p>
+        <p><i>created on <%= field_condition.created_at.advance(:hours => -6).strftime("%A, %B %d at %I:%M %p") %></i></p>
         <hr>
       <% end %>
     <% end %>

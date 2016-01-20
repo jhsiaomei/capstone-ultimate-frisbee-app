@@ -37,7 +37,6 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @user_event = UserEvent.where("event_id = ? AND user_id = ?", @event.id, current_user.id)
   end
 
   def edit

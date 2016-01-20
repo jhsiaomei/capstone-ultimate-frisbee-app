@@ -32,22 +32,28 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groups<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                               <li><a href="/groups">All Groups</a></li>
-                              <li><a href="/groups/new">Add A New Group</a></li>
+                              <% if current_user %>
+                                <li><a href="/groups/new">Add A New Group</a></li>
+                              <% end %>
                             </ul>
                           </li>
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                               <li><a href="/events">All Events</a></li>
-                              <li><a href="/events/new">Add A New Event</a></li>
+                              <% if current_user %>
+                                <li><a href="/events/new">Add A New Event</a></li>
+                              <% end %>
                             </ul>
                           </li>
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fields<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                               <li><a href="/fields">All Fields</a></li>
-                              <li><a href="/fields/new">Add A New Field</a></li>
-                              <li><a href="/field_conditions/new">Add a Field Condition</a></li>
+                              <% if current_user %>
+                                <li><a href="/fields/new">Add A New Field</a></li>
+                                <li><a href="/field_conditions/new">Add a Field Condition</a></li>
+                              <% end %>
                             </ul>
                           </li>
                           <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>

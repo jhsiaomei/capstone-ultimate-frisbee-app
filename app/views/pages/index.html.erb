@@ -1,6 +1,21 @@
-<div id="map_wrapper">
-    <div id="map" class="mapping"></div>
+<div class="row">
+  <div class="col-md-6">
+    <h3><center>Upcoming Games</center></h3>
+    <div id="map_wrapper">
+      <div id="map" class="mapping"></div>
+    </div>    
+  </div>    
+  <div class="col-md-6">
+  </div>
 </div>
+<div>
+  <h3><%= @event.name %></h3>
+  <p><strong>Date: </strong><%= @event.start_datetime.to_date.strftime("%-A, %-B %-d") %></p>
+</div>
+
+
+
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxciPqerBead0Ay4BDH1cy9hra0BFLfc"></script>
 <script type="text/javascript">
   $(document).ready(function () {

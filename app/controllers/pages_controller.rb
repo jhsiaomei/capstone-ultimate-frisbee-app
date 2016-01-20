@@ -8,5 +8,8 @@ class PagesController < ApplicationController
       end
     end
     @fields
+
+    events = Event.where("start_datetime > current_timestamp")
+    @event = events.order(:start_datetime).first
   end
 end

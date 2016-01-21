@@ -39,13 +39,15 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @field = @event.field
-    user_event = UserEvent.where("user_id = ? AND event_id = ?", current_user.id, params[:id]).first
-    if user_event == [] || user_event == nil
-      @user_event_admin = false
-      @user_event = false
-    else
-      @user_event_admin = user_event.is_admin
-      @user_event = true
+    if current_user
+      user_event = UserEvent.where("user_id = ? AND event_id = ?", current_user.id, params[:id]).first
+      if user_event == [] || user_event == nil
+        @user_event_admin = false
+        @user_event = false
+      else
+        @user_event_admin = user_event.is_admin
+        @user_event = true
+      end
     end
     if @field.intersection == ""
       @field_address = "#{@field.street_number} #{@field.street_address} | #{@field.city}, #{@field.state} #{@field.zip_code}"

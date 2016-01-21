@@ -30,13 +30,15 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @field = @group.field
-    user_group = UserGroup.where("user_id = ? AND group_id = ?", current_user.id, params[:id]).first
-    if user_group == [] || user_group == nil
-      @user_group_admin = false
-      @user_group = false
-    else
-      @user_group_admin = user_group.is_admin
-      @user_group = true
+    if current_user
+      user_group = UserGroup.where("user_id = ? AND group_id = ?", current_user.id, params[:id]).first
+      if user_group == [] || user_group == nil
+        @user_group_admin = false
+        @user_group = false
+      else
+        @user_group_admin = user_group.is_admin
+        @user_group = true
+      end
     end
     if @field.intersection == ""
       @field_address = "#{@field.street_number} #{@field.street_address} | #{@field.city}, #{@field.state} #{@field.zip_code}"

@@ -23,13 +23,17 @@
     <div id="showmap"></div>
   </div>
 </div>
-<% if @user_group == false %>
-  <%= form_tag "/user_groups", method: :post do %>
-    <input name="group_id" value="<%= @group.id %>" type="hidden">
-    <%= button_tag "Join this group", class: "btn btn-default" %>
+<% if current_user %>
+  <% if @user_group == false %>
+    <%= form_tag "/user_groups", method: :post do %>
+      <input name="group_id" value="<%= @group.id %>" type="hidden">
+      <%= button_tag "Join this group", class: "btn btn-default" %>
+    <% end %>
+  <% else %>
+    <h5>You are a member of this group!</h5>
   <% end %>
 <% else %>
-  <h5>You are a member of this group!</h5>
+  <h5>Sign in to join this group!</h5>
 <% end %>
 <hr>
 <div id="outer">

@@ -27,33 +27,26 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right scroll-to">
                         <% if user_signed_in? %>
-                          <li><a href="/dashboards/<%= current_user.id %>">Home</a></li>
+                          <li><a href="/dashboards/<%= current_user.id %>">Dashboard</a></li>
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groups<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                               <li><a href="/groups">View All Groups</a></li>
-                              <% if current_user %>
-                                <li><a href="/groups/new">Add a New Group</a></li>
-                              <% end %>
+                              <li><a href="/groups/new">Add a New Group</a></li>
                             </ul>
                           </li>
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                               <li><a href="/events">View All Events</a></li>
-                              <% if current_user %>
-                                <li><a href="/events/new">Add a New Event</a></li>
-                              <% end %>
+                              <li><a href="/events/new">Add a New Event</a></li>
                             </ul>
                           </li>
                           <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fields<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                               <li><a href="/fields">View All Fields</a></li>
-                              <% if current_user %>
-                                <li><a href="/fields/new">Add A New Field</a></li>
-                                <li><a href="/field_conditions/new">Add a Field Condition</a></li>
-                              <% end %>
+                              <li><a href="/fields/new">Add a New Field</a></li>
                             </ul>
                           </li>
                           <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>

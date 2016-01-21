@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  layout "banner"
   def index
     @fields = []
     fields = Field.all
@@ -10,6 +11,6 @@ class PagesController < ApplicationController
     @fields
 
     events = Event.where("start_datetime > current_timestamp")
-    @event = events.order(:start_datetime).first
+    @events = events.order(:start_datetime).limit(4)
   end
 end

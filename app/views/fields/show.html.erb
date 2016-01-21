@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-5" id="map_padding">
     <h3><%= @field.name %></h3>
     <p><%= @field_placeholder %></p>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -17,9 +17,9 @@
     </style>
     <div id="showmap"></div>
   </div>
-  <div class="col-md-1">
+  <div class="col-md-1" id="map_padding">
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6" id="map_padding">
     <h3>Field Conditions</h3>
     <% if @field.field_conditions == [] %>
       <p>No conditions for this field have been reported.</p>

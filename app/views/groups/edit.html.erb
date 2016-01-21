@@ -1,3 +1,4 @@
+<div id="row_padding">
 <h2>Update this Group:</h2>
 
 <%= form_tag "/groups/#{@group.id}", method: :patch do %>
@@ -31,7 +32,7 @@
   </div>
 <% end %><br />
 <a href="/groups/<%= @group.id %>"><button class="btn btn-default">Cancel</button></a>
-
+</div>
 
 <script type="text/javascript">
 $(document).ready(function () {

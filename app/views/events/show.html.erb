@@ -8,7 +8,7 @@
     <p><%= @field_address %></p>
     <p><strong>Description: </strong><%= @event.description %></p>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6" id="map_padding">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Simple markers</title>
@@ -16,7 +16,7 @@
       html, body {
         height: 100%;
         margin: 0;
-        padding: 0;
+        padding-top: 20px;
       }
       #showmap {
         height: 300px;

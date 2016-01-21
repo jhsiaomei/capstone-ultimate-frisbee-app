@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CapstoneUltimateFrisbeeApp</title>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="80">
+
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top after-color">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div id="logoImg"><a href="/"><%= image_tag("ultimate-central.png") %></a></div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right scroll-to">
+            <% if user_signed_in? %>
+              <li><a href="/dashboards/<%= current_user.id %>">Dashboard</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groups<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/groups">View All Groups</a></li>
+                  <li><a href="/groups/new">Add a New Group</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/events">View All Events</a></li>
+                  <li><a href="/events/new">Add a New Event</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fields<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/fields">View All Fields</a></li>
+                  <li><a href="/fields/new">Add a New Field</a></li>
+                </ul>
+              </li>
+              <li><%= link_to "Sign Out", "/users/sign_out", method: :delete %></li>
+            <% else %>
+              <li><a href="/">Home</a></li>
+              <li><a href="/groups">Groups</a></li>
+              <li><a href="/events">Events</a></li>
+              <li><a href="/fields">Fields</a></li>
+              <!-- Modal -->
+              <li><a data-toggle="modal" href="#gridSystemModal">Access</li>
+              <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="gridModalLabel">Access</h4>
+                    </div>
+                    <div class="modal-body">
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs" id="tabList">
+                        <li class="active"><a data-toggle="tab" href="#sign-in">Sign In</a></li>
+                        <li><a data-toggle="tab" href="#sign-up">Sign up</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div class="tab-pane active" id="sign-in">
+                          <div class="control-group">
+                            <div class="control-label">
+                              <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="QqprIBbAFMzDxCC2hyxozzRh/R/ezik/5gOMjQQUJmUeepZDgNLOJ772rRwOB5JN87XQHTsmwWzUNA6gf8K+sA==">
+                                <div class="field">
+                                  <label for="user_email">Email</label><br>
+                                  <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+                                </div>
+                                <div class="field">
+                                  <label for="user_password">Password</label><br>
+                                  <input autocomplete="off" type="password" name="user[password]" id="user_password">
+                                </div>
+                                <div class="field">
+                                  <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+                                  <label for="user_remember_me">Remember me</label>
+                                </div>
+                                <div class="actions">
+                                  <input type="submit" name="commit" value="Log in">
+                                </div>
+                              </form>
+                            </div>
+                          </div>                       
+                        </div>
+                        <div class="tab-pane" id="sign-up">
+                          <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="UlOQDkwhL7QO/GY9F68ukEXXuiD4htyj+AnBVk8peuMbHy718FT6lMVKUBZXffPnSn7sKMr/cbcfgetjET7miA==">
+                            <div class="field">
+                              <label for="user_email">Email</label><br>
+                              <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+                            </div>
+                            <div class="field">
+                              <label for="user_password">Password</label>
+                              <em>(8 characters minimum)</em>
+                              <br>
+                              <input autocomplete="off" type="password" name="user[password]" id="user_password">
+                            </div>
+                            <div class="field">
+                              <label for="user_password_confirmation">Password confirmation</label><br>
+                              <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+                            </div><br>
+                            <div class="actions">
+                              <input type="submit" name="commit" value="Sign up">
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>
+
+    <div class="container section-padding-landing">
+        <div class="container">
+          <% flash.each do |name, message| %>
+            <div class="alert alert-<%= name %> alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <%= message %>
+            </div>
+          <% end %>
+        </div>
+    <%= yield %>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <span class="candiman">ACLTC Winter 2015-16</span>
+            <span class="copyright">&copy; Copyright 2015. Piple One page theme.</span>
+        </div>
+    </footer>
+  </body>
+</html>

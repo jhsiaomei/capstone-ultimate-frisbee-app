@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6" id="map_padding">
     <h3><%= @group.name %></h3>
     <p><strong>Type: </strong><%= @group.group_type %></p>
     <p><strong>Description: </strong><%= @group.description %></p>
     <p><strong>Field: </strong><a href="/fields/<%= @group.field.id %>"><%= @group.field.name %></a></p>
     <p><%= @field_address %></p>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6" style="padding-top:50px">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Simple markers</title>

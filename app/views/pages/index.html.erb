@@ -1,20 +1,22 @@
+<div class="container" style="padding-left:0px">
+  <img src="/assets/ultimate-banner.jpg" style="max-width:100%;">
+</div>
 <div class="row">
-  <div class="col-md-6">
-    <h3><center>Upcoming Games in Chicago</center></h3>
+  <div class="col-md-6" id="map_padding">
     <div id="map_wrapper">
       <div id="map" class="mapping"></div>
     </div>    
   </div>    
   <div class="col-md-6">
-    
+    <h2><center>Upcoming Games in Chicago</center></h2>
+      <% @events.each do |event| %>
+        <div class="well well-sm" style="padding:2px" align="center">
+          <h4><a href="/events/<%= event.id %>"><%= event.name %></a></h4>
+          <p><strong>Date: </strong><%= event.start_datetime.to_date.strftime("%-A, %-B %-d") %></p>
+        </div>
+      <% end %>
   </div>
 </div>
-<div>
-  <h3><%= @event.name %></h3>
-  <p><strong>Date: </strong><%= @event.start_datetime.to_date.strftime("%-A, %-B %-d") %></p>
-</div>
-
-
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxciPqerBead0Ay4BDH1cy9hra0BFLfc"></script>

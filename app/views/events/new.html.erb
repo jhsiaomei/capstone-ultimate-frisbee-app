@@ -1,3 +1,4 @@
+<div id="row_padding">
 <h2>Add a new Event:</h2>
 <%= form_tag '/events', method: :post do %>
   <div class="form-group">
@@ -72,4 +73,5 @@
     <%= button_tag 'Submit', class: "btn btn-default"%>
   </div>
 <% end %><br />
-    <a href="/events"><button class="btn btn-default">Cancel</button></a>
+<a href="/events"><button class="btn btn-default">Cancel</button></a>
+</div>

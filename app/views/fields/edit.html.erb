@@ -1,47 +1,48 @@
-<h2>Edit this Field:</h2>
-<div class="container">
-  <%= form_tag "/fields/#{@field.id}", method: :patch do %>
-    <div class="form-group">
-      <%= label_tag :name, "Name" %>
-      <%= text_field_tag :name, @field.name, class: "form-control" %>
+<h2>Update this Field:</h2>
+<%= form_tag "/fields/#{@field.id}", method: :patch do %>
+  <div class="form-group">
+    <%= label_tag :name, "Name" %>
+    <%= text_field_tag :name, @field.name, class: "form-control" %>
+  </div>
+  <h4>Enter either an Address or an Intersection:</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group" id="locationField">
+        <label>Address</label>
+        <input id="autocomplete" class="form-control" onFocus="geolocate()" value="<%= @field_placeholder %>" placeholder="" type="text"></input>
+      </div>
     </div>
-    <div class="form-group" id="locationField">
-      <label>Input Address</label>
-      <input id="autocomplete" class="form-control" onFocus="geolocate()" value="<%= @field_placeholder %>" type="text"></input>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Intersection</label>
+        <input type="text" class="form-control" value="<%= @field.intersection %>" placeholder="" name="intersection"></input>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Input Intersection</label>
-      <input type="text" class="form-control" value="<%= @field.intersection %>" name="intersection"></input>
-    </div>
-    <div class="form-group">
-      <%= hidden_field_tag :street_number, "", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= hidden_field_tag :route, "", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= hidden_field_tag :locality, "", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= hidden_field_tag :administrative_area_level_1, "", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= hidden_field_tag :country, "", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= hidden_field_tag :postal_code, "", class: "form-control" %>
-    </div>
-    <div>
-      <%= button_tag 'Submit', class: "btn btn-default" %>
-    </div>
-  <% end %>
-</div>
-<div class="container">
-  <%= form_tag "/fields/#{@field.id}", method: :get do %>
-    <div class="form-group">
-      <%= button_tag 'Back', class: "btn btn-default" %>
-    </div>
-  <% end %>
-</div>
+  </div>
+  <div class="form-group">
+    <%= hidden_field_tag :street_number, "", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= hidden_field_tag :route, "", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= hidden_field_tag :locality, "", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= hidden_field_tag :administrative_area_level_1, "", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= hidden_field_tag :country, "", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= hidden_field_tag :postal_code, "", class: "form-control" %>
+  </div>
+  <div>
+    <%= button_tag 'Submit', class: "btn btn-default" %>
+  </div>
+<% end %><br />
+<a href="/fields/<%= @field.id %>"><button class="btn btn-default">Cancel</button></a>
+
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxciPqerBead0Ay4BDH1cy9hra0BFLfc&signed_in=true&libraries=places&callback=initAutocomplete" async defer></script>

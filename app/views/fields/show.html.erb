@@ -1,11 +1,7 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-5">
     <h3><%= @field.name %></h3>
-    <% if @field.intersection != "" %>
-      <p><%= @field.intersection %></p>
-    <% else %>
-      <p><%= @field_placeholder %></p>
-    <% end %>
+    <p><%= @field_placeholder %></p>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Simple markers</title>
@@ -21,8 +17,10 @@
     </style>
     <div id="showmap"></div>
   </div>
+  <div class="col-md-1">
+  </div>
   <div class="col-md-6">
-    <h3>Field Conditions:</h3>
+    <h3>Field Conditions</h3>
     <% if @field.field_conditions == [] %>
       <p>No conditions for this field have been reported.</p>
     <% else %>
@@ -31,9 +29,42 @@
         <p><i>created on <%= field_condition.created_at.advance(:hours => -6).strftime("%A, %B %d at %I:%M %p") %></i></p>
         <hr>
       <% end %>
+    <% end %><br />
+    <h4>At the field? Add a condition update!</h4>
+    <%= form_tag '/field_conditions', method: :post do %>
+      <div class="row">
+        <div class="col-md-10">
+          <%= hidden_field_tag :field_id, @field.id %>
+          <div class="form-group">
+            <%= text_field_tag :condition, nil, class: "form-control" %>
+          </div>
+          <% hidden_field_tag :user_id, current_user.id %>
+        </div>
+        <div class="col-md-2">
+          <div>
+            <%= button_tag 'Submit', class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
+
+
+
+
+
+
+<hr>
+<div id="outer">
+  <div class="inner">
+    <a href="/fields"><button class="btn btn-default">View All Fields</button></a>
+  </div>
+  <div class="inner">
+    <a href="/fields/<%= @field.id %>/edit"><button class="btn btn-default">Update this Field</button></a>
+  </div>
+</div>
+
 
 <script>
 
@@ -56,14 +87,3 @@ function initMap() {
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxciPqerBead0Ay4BDH1cy9hra0BFLfc
 &signed_in=true&callback=initMap"></script>
-
-<br>
-<form action="/field_conditions/new">
-    <input type="submit" class="btn btn-default" value="Add a Field Condition">
-</form>
-<form action="/fields/<%= @field.id %>/edit">
-    <input type="submit" class="btn btn-default" value="Edit this Field">
-</form>
-<form action="/fields">
-    <input type="submit" class="btn btn-default" value="Back">
-</form>

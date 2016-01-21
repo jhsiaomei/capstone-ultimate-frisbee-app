@@ -35,7 +35,7 @@
   </div>
   <% if @user_event == true %>
     <div class="inner">
-      <a href="/events/<%= @event.id %>/edit"><button class="btn btn-default">Edit this Event</button></a>
+      <a href="/events/<%= @event.id %>/edit"><button class="btn btn-default">Update this Event</button></a>
     </div>
     <div class="inner">
     <%= button_to "Delete this Event", "/events/#{@event.id}", method: :delete, class: "btn btn-default" %>

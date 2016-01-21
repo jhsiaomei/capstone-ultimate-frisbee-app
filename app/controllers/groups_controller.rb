@@ -57,7 +57,7 @@ class GroupsController < ApplicationController
       group_type: params[:group_type]
       )
 
-    flash[:notice] = "You edited this group."
+    flash[:notice] = "You updated this group."
     redirect_to "/groups/#{@group.id}"
   end
 

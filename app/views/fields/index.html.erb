@@ -1,9 +1,21 @@
+<div class="row">
+  <div class="col-md-3">
+    <h2 align="center">All Fields</h2>
+  </div>
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-3">
+    <a href="/fields/new"><button class="btn btn-default" style="margin-top: 20px">Add a Field</button></a>
+  </div>
+</div>
+
 <% @fields.each do |field| %>
-  <h4><a href="/fields/<%= field.id %>"><%= field.name %></a></h4>
-  <% if field.intersection != "" %>
-    <p><%= field.intersection %></p>
-  <% else %>
-    <p><%= field.street_number %> <%= field.street_address %> | <%= field.city %>, <%= field.state %> <%= field.zip_code %></p>
-  <% end %>
-  <hr>
+  <div class="well">
+    <h3><a href="/fields/<%= field.id %>"><%= field.name %></a></h3>
+    <% if field.street_address != "" %>
+      <p><%= field.street_number %> <%= field.street_address %> | <%= field.city %>, <%= field.state %> <%= field.zip_code %></p>
+    <% else %>
+      <p><%= field.intersection %></p>
+    <% end %>
+  </div>
 <% end %>

@@ -71,7 +71,7 @@ class EventsController < ApplicationController
       stop_datetime: stop_datetime
       )
 
-    flash[:notice] = "You edited this event."
+    flash[:notice] = "You updated this event."
     redirect_to "/events/#{@event.id}"
   end
 

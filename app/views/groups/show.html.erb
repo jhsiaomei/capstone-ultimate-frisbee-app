@@ -29,7 +29,7 @@
   </div>
   <% if @user_group == true %>
     <div class="inner">
-      <a href="/groups/<%= @group.id %>/edit"><button class="btn btn-default">Edit this Group</button></a>
+      <a href="/groups/<%= @group.id %>/edit"><button class="btn btn-default">Update this Group</button></a>
     </div>
     <div class="inner">
     <%= button_to "Delete this Group", "/groups/#{@group.id}", method: :delete, class: "btn btn-default" %>

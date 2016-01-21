@@ -1,4 +1,4 @@
-<h2>Edit this Group:</h2>
+<h2>Update this Group:</h2>
 
 <%= form_tag "/groups/#{@group.id}", method: :patch do %>
   <div class="form-group">
@@ -30,7 +30,7 @@
     <%= button_tag 'Submit', class: "btn btn-default" %>
   </div>
 <% end %><br />
-    <a href="/groups/<%= @group.id %>"><button class="btn btn-default">Cancel</button></a>
+<a href="/groups/<%= @group.id %>"><button class="btn btn-default">Cancel</button></a>
 
 
 <script type="text/javascript">

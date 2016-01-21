@@ -20,17 +20,30 @@ class FieldsController < ApplicationController
       zip_code: params[:postal_code],
       )
     @field.save
-    redirect_to '/fields'
+
+    flash[:notice] = "You added this field."
+    redirect_to "/fields/#{@field.id}"
   end
 
   def show
     @field = Field.find(params[:id])
-    @field_placeholder = "#{@field.street_number} #{@field.street_address} | #{@field.city}, #{@field.state} #{@field.zip_code}"
+    if @field.street_address != ""
+      @field_placeholder = "#{@field.street_number} #{@field.street_address} | #{@field.city}, #{@field.state} #{@field.zip_code}"
+    else
+      @field_placeholder = "#{@field.intersection}"
+    end
+    @fields = Field.all
   end
 
   def edit
     @field = Field.find(params[:id])
-    @field_placeholder = "#{@field.street_number} #{@field.street_address}, #{@field.city}, #{@field.state}, #{@field.zip_code}"
+    if @field.intersection != ""
+      @field_placeholder = ""
+    elsif @field.street_address == ""
+      @field_placeholder = ""
+    else
+      @field_placeholder = "#{@field.street_number} #{@field.street_address}, #{@field.city}, #{@field.state}, #{@field.zip_code}"
+    end
   end
 
   def update
@@ -44,6 +57,8 @@ class FieldsController < ApplicationController
       state: params[:administrative_area_level_1],
       zip_code: params[:postal_code]
       )
+
+    flash[:notice] = "You updated this field."
     redirect_to "/fields/#{field.id}"
   end
 
@@ -57,5 +72,4 @@ class FieldsController < ApplicationController
       redirect_to "/fields"
     end
   end
-
 end

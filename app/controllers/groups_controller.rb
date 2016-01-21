@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :require_login!, except: [:index, :show]
+  before_action :require_admin!, only: :edit
 
   def index
     @groups = Group.all.order(:name)
@@ -29,6 +30,17 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @field = @group.field
+    user_group = UserGroup.where("user_id = ? AND group_id = ?", current_user.id, params[:id]).first
+    if user_group == [] || user_group == nil
+      @user_group = false
+    else
+      @user_group = user_group.is_admin
+    end
+    if @field.intersection == ""
+      @field_address = "#{@field.street_number} #{@field.street_address} | #{@field.city}, #{@field.state} #{@field.zip_code}"
+    else
+      @field_address = "#{@field.intersection}"
+    end
   end
 
   def edit
@@ -57,16 +69,25 @@ class GroupsController < ApplicationController
       user_group.destroy
     end
 
-    flash[:notice] = "You deleted this event."
+    flash[:notice] = "You deleted this group."
     redirect_to "/groups"
   end
 
   private
   
-    def require_login!
+  def require_login!
     unless current_user
       redirect_to "/groups"
     end
   end
 
+  def require_admin!
+    group = Group.find(params[:id])
+    user_group = UserGroup.where("user_id = ? AND group_id = ?", current_user.id, params[:id]).first
+    if user_group == [] || user_group == nil
+      redirect_to "/groups/#{group.id}"
+    elsif user_group.is_admin == false
+      redirect_to "/groups/#{group.id}"
+    end
+  end
 end

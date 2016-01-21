@@ -28,9 +28,9 @@
   </div>
   <div>
     <%= button_tag 'Submit', class: "btn btn-default" %>
-    <a href="/groups"><button class="btn btn-default">Back</button></a>
   </div>
-<% end %>
+<% end %><br />
+    <a href="/groups/<%= @group.id %>"><button class="btn btn-default">Cancel</button></a>
 
 
 <script type="text/javascript">

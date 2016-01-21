@@ -1,12 +1,18 @@
-<h2>All Groups:</h2>
-
+<div class="row">
+  <div class="col-md-3">
+    <h2>All Groups</h2>
+  </div>
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-3">
+    <a href="/groups/new"><button class="btn btn-default" style="margin-top: 20px">Create a New Group</button></a>
+  </div>
+</div>
 <% @groups.each do |group| %>
-  <p><a href="/groups/<%= group.id %>"><strong><%= group.name %></strong></a></p>
+  <div class="well">
+  <h3><a href="/groups/<%= group.id %>"><%= group.name %></a></h3>
   <p><strong>Type: </strong><%= group.group_type %></p>
   <p><strong>Description: </strong><%= group.description %></p>
   <p><strong>Field: </strong><%= group.field.name %></p>
-  <hr>
+  </div>
 <% end %>
-
-<div><%= link_to "Add New Group", "/groups/new", method: :get %></div>
-

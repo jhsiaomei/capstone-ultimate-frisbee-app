@@ -1,13 +1,66 @@
-<h3><%= @event.name %></h3>
-<p>Event Type: <%= @event.event_type %></p>
-<p>Start Date/Time: <%= @event.start_datetime.strftime("%A, %B %d at %I:%M %p") %></p>
-<p>Stop Date/Time: <%= @event.stop_datetime.strftime("%A, %B %d at %I:%M %p") %></p>
-<p><%= @event.description %></p>
-<p>Where: <%= @event.field.name %></p>
+<div class="row">
+  <div class="col-md-6">
+    <h3><%= @event.name %></h3>
+    <p><strong>Event Type: </strong><%= @event.event_type %></p>
+    <p><strong>Begins: </strong><%= @event.start_datetime.strftime("%A, %B %d at %I:%M %p") %></p>
+    <p><strong>Ends: </strong><%= @event.stop_datetime.strftime("%A, %B %d at %I:%M %p") %></p>
+    <p><strong>Where: </strong><%= @event.field.name %></p>
+    <p><%= @field_address %></p>
+    <p><strong>Description: </strong><%= @event.description %></p>
+  </div>
+  <div class="col-md-6">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #showmap {
+        height: 300px;
+      }
+    </style>
+    <div id="showmap"></div>
+  </div>
+</div>
 <%= form_tag "/user_events", method: :post do %>
   <input name="event_id" value="<%= @event.id %>" type="hidden">
   <%= button_tag "Join this event", class: "btn btn-default" %>
 <% end %>
 <hr>
-<p><%= link_to 'Edit this Event', "/events/#{@event.id}/edit", method: :get %></p>
-<p><%= link_to 'Delete this Event', "/events/#{@event.id}", method: :delete %></p>
+<div id="outer">
+  <div class="inner"><a href="/events"><button class="btn btn-default">View All Events</button></a>
+  </div>
+  <% if @user_event == true %>
+    <div class="inner">
+      <a href="/events/<%= @event.id %>/edit"><button class="btn btn-default">Edit this Event</button></a>
+    </div>
+    <div class="inner">
+    <%= button_to "Delete this Event", "/events/#{@event.id}", method: :delete, class: "btn btn-default" %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+
+function initMap() {
+  var myLatLng = {lat: <%= @field.latitude %>, lng: <%= @field.longitude %>};
+
+  var showmap = new google.maps.Map(document.getElementById('showmap'), {
+    zoom: 15,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: showmap,
+    title: 'Hello World!'
+  });
+}
+
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxciPqerBead0Ay4BDH1cy9hra0BFLfc
+&signed_in=true&callback=initMap"></script>

@@ -1,16 +1,23 @@
-<h2>Full List of Events:</h2>
+<div class="row">
+  <div class="col-md-3">
+    <h2 align="center">All Events</h2>
+  </div>
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-3">
+    <a href="/events/new"><button class="btn btn-default" style="margin-top: 20px">Create a New Event</button></a>
+  </div>
+</div>
 
 <% @events.each do |event| %>
-  <p>Name: <a href="/events/<%= event.id %>"><%= event.name %></a></p>
-  <div class="row">
-    <p class="col-md-6">Type: <%= event.event_type %></p>
-    <p class="col-md-6">Field: <%= event.field.name %></p>
+  <div class="well">
+    <h3><a href="/events/<%= event.id %>"><%= event.name %></a></h3>
+    <p><strong>Type: </strong><%= event.event_type %></p>
+    <p><strong>Field: </strong><%= event.field.name %></p>
+    <p><strong>Begin: </strong><%= event.start_datetime.strftime("%-A, %-B %d at %-I:%M %p") %></p>
+    <p><strong>End: </strong><%= event.stop_datetime.strftime("%-A, %-B %d at %-I:%M %p") %></p>
+    <p><strong>Description: </strong><%= event.description %></p>
   </div>
-  <p>Description: <%= event.description %></p>
-  <p>Date/Time Start: <%= event.start_datetime.strftime("%-A, %-B %d at %-I:%M %p") %></p>
-  <p>Date/Time Stop: <%= event.stop_datetime.strftime("%-A, %-B %d at %-I:%M %p") %></p>
-  <p><%= link_to "Edit this event!", "/events/#{event.id}/edit", method: :get %></p>
-  <hr>
 <% end %>
 
 

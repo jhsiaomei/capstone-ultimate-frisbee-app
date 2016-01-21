@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :require_login!, except: [:index, :show]
+  before_action :require_admin!, only: :edit
 
   def index
     events = Event.where("start_datetime > current_timestamp")
@@ -32,11 +33,23 @@ class EventsController < ApplicationController
       )
 
     flash[:notice] = "You created this event."
-    redirect_to "/events"
+    redirect_to "/events/#{@event.id}"
   end
 
   def show
     @event = Event.find(params[:id])
+    @field = @event.field
+    user_event = UserEvent.where("user_id = ? AND event_id = ?", current_user.id, params[:id]).first
+    if user_event == [] || user_event == nil
+      @user_event = false
+    else
+      @user_event = user_event.is_admin
+    end
+    if @field.intersection == ""
+      @field_address = "#{@field.street_number} #{@field.street_address} | #{@field.city}, #{@field.state} #{@field.zip_code}"
+    else
+      @field_address = "#{@field.intersection}"
+    end
   end
 
   def edit
@@ -81,4 +94,14 @@ class EventsController < ApplicationController
       redirect_to "/events"
     end
   end
+
+  def require_admin!
+    event = Event.find(params[:id])
+    user_event = UserEvent.where("user_id = ? AND event_id = ?", current_user.id, params[:id]).first
+    if user_event == [] || user_event == nil
+      redirect_to "/events/#{event.id}"
+    elsif user_event.is_admin == false
+      redirect_to "/events/#{event.id}"
+    end
+  end  
 end

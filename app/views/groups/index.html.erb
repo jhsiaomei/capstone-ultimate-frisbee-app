@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-3">
-    <h2>All Groups</h2>
+    <h2 align="center">All Groups</h2>
   </div>
   <div class="col-md-6">
   </div>
@@ -8,6 +8,7 @@
     <a href="/groups/new"><button class="btn btn-default" style="margin-top: 20px">Create a New Group</button></a>
   </div>
 </div>
+
 <% @groups.each do |group| %>
   <div class="well">
   <h3><a href="/groups/<%= group.id %>"><%= group.name %></a></h3>

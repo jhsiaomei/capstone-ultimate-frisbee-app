@@ -25,15 +25,19 @@
     <div id="showmap"></div>
   </div>
 </div>
-<%= form_tag "/user_events", method: :post do %>
-  <input name="event_id" value="<%= @event.id %>" type="hidden">
-  <%= button_tag "Join this event", class: "btn btn-default" %>
+<% if @user_event == false %>
+  <%= form_tag "/user_events", method: :post do %>
+    <input name="event_id" value="<%= @event.id %>" type="hidden">
+    <%= button_tag "Join this event", class: "btn btn-default" %>
+  <% end %>
+<% else %>
+  <h5>You are attending this event!</h5>
 <% end %>
 <hr>
 <div id="outer">
   <div class="inner"><a href="/events"><button class="btn btn-default">View All Events</button></a>
   </div>
-  <% if @user_event == true %>
+  <% if @user_event_admin == true %>
     <div class="inner">
       <a href="/events/<%= @event.id %>/edit"><button class="btn btn-default">Update this Event</button></a>
     </div>

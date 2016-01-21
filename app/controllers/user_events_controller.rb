@@ -6,6 +6,13 @@ class UserEventsController < ApplicationController
   end
 
   def create
+    user_event = UserEvent.create(
+      user_id: current_user.id,
+      event_id: params[:event_id],
+      is_admin: false
+      )
+    flash[:alert] = "You have joined this event!"
+    redirect_to "/events/#{user_event.event_id}"
   end
 
   def show

@@ -41,9 +41,11 @@ class EventsController < ApplicationController
     @field = @event.field
     user_event = UserEvent.where("user_id = ? AND event_id = ?", current_user.id, params[:id]).first
     if user_event == [] || user_event == nil
+      @user_event_admin = false
       @user_event = false
     else
-      @user_event = user_event.is_admin
+      @user_event_admin = user_event.is_admin
+      @user_event = true
     end
     if @field.intersection == ""
       @field_address = "#{@field.street_number} #{@field.street_address} | #{@field.city}, #{@field.state} #{@field.zip_code}"

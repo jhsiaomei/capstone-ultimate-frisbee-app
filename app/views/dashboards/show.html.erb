@@ -11,7 +11,7 @@
       <% @user_events.each do |user_event| %>
         <div class="well">
         <h4><%= user_event.start_datetime.to_date.strftime("%A, %B %d") %></h4>
-        <p><strong><%= user_event.name %></strong></p>
+        <p><strong><a href="/events/<%= user_event.id %>"><%= user_event.name %></a></strong></p>
         <p><strong>Event Type: </strong><%= user_event.event_type %></p>
         <p><strong>Where: </strong><%= user_event.field.name %></p>
         </div>

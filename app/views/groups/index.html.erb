@@ -4,9 +4,11 @@
   </div>
   <div class="col-md-6">
   </div>
-  <div class="col-md-3">
-    <a href="/groups/new"><button class="btn btn-default" style="margin-top: 20px">Create a New Group</button></a>
-  </div>
+  <% if current_user %>
+    <div class="col-md-3">
+      <a href="/groups/new"><button class="btn btn-default" style="margin-top: 20px">Create a New Group</button></a>
+    </div>
+  <% end %>
 </div>
 
 <% @groups.each do |group| %>

@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  layout "banner"
   
   def index
     @fields = []

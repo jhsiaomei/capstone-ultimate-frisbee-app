@@ -1,20 +1,40 @@
-<div id='calendar' style="padding-top:50px">
-</div>
-<br />
-<% if @user_events != [] %>
-  <h3>Your upcoming events:</h3>
-  <% @user_events.each do |user_event| %>
-    <div class="well">
-    <p><strong><%= user_event.start_datetime.to_date.strftime("%A, %B %d") %>:</strong></p>
-    <p><strong>Name: </strong><%= user_event.name %></p>
-    <p><strong>Btart Time: </strong><%= user_event.start_datetime.to_time.strftime("%-I:%M %p") %></p>
-    <p><strong>Stop Time: </strong><%= user_event.stop_datetime.to_time.strftime("%-I:%M %p") %></p>
-    <p><strong>Event Type: </strong><%= user_event.event_type %></p>
-    <p><strong>Field: </strong><%= user_event.field.name %></p>
-    <p><strong>Description: </strong><%= user_event.description %></p>
+
+
+<div class="row">
+  <div class="col-md-9">
+    <div id='calendar' style="padding-top:50px">
     </div>
-    <hr>
+  </div>
+  <div class="col-md-3" id="row_padding">
+    <% if @user_events != [] %>
+      <h3>Your upcoming events</h3>
+      <% @user_events.each do |user_event| %>
+        <div class="well">
+        <h4><%= user_event.start_datetime.to_date.strftime("%A, %B %d") %></h4>
+        <p><strong><%= user_event.name %></strong></p>
+        <p><strong>Event Type: </strong><%= user_event.event_type %></p>
+        <p><strong>Where: </strong><%= user_event.field.name %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <h3>You have no upcoming events.</h3>
+    <% end %>
+  </div>
+</div>
+<hr>
+<div>
+  <% if @user_groups != [] %>
+    <h3>Your groups</h3>
+    <div class="row">
+      <% @user_groups.each do |user_group| %>
+        <div class="col-sm-3 well" id="group_wells">
+            <h4><center><a href="/groups/<%= user_group.id %>"><%= user_group.name %></a></center></h4>
+            <p><center><strong>Type: </strong><%= user_group.group_type %></center></p>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <h3>You have no upcoming events.</h3>
   <% end %>
-<% else %>
-  <h3>You have no upcoming events.</h3>
-<% end %>
+
+</div>

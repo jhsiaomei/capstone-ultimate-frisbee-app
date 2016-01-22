@@ -4,7 +4,8 @@ class DashboardsController < ApplicationController
   end
 
   def show
-    @user_events = current_user.events.where("start_datetime > current_timestamp")
-    @user_events = @user_events.order("start_datetime ASC")
+    user_events = current_user.events.where("start_datetime > current_timestamp")
+    @user_events = user_events.order("start_datetime ASC").limit(2)
+    @user_groups = current_user.groups
   end
 end

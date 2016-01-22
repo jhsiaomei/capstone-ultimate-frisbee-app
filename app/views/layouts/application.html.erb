@@ -53,71 +53,71 @@
               <li><a href="/groups">Groups</a></li>
               <li><a href="/events">Events</a></li>
               <li><a href="/fields">Fields</a></li>
-              <!-- Modal -->
-              <li><a data-toggle="modal" href="#gridSystemModal">Access</li>
-              <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+              <li><a data-toggle="modal" href="#myModal">Access</a></li>
+              <!-- NEW Modal -->
+              <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="gridModalLabel">Access</h4>
+                      <h4 class="modal-title">Log in to access more features!</h4>
                     </div>
                     <div class="modal-body">
-                      <!-- Nav tabs -->
-                      <ul class="nav nav-tabs" id="tabList">
-                        <li class="active"><a data-toggle="tab" href="#sign-in">Sign In</a></li>
-                        <li><a data-toggle="tab" href="#sign-up">Sign up</a></li>
-                      </ul>
-                      <div class="tab-content">
-                        <div class="tab-pane active" id="sign-in">
-                          <div class="control-group">
-                            <div class="control-label">
-                              <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="QqprIBbAFMzDxCC2hyxozzRh/R/ezik/5gOMjQQUJmUeepZDgNLOJ772rRwOB5JN87XQHTsmwWzUNA6gf8K+sA==">
-                                <div class="field">
-                                  <label for="user_email">Email</label><br>
-                                  <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
-                                </div>
-                                <div class="field">
-                                  <label for="user_password">Password</label><br>
-                                  <input autocomplete="off" type="password" name="user[password]" id="user_password">
-                                </div>
-                                <div class="field">
-                                  <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
-                                  <label for="user_remember_me">Remember me</label>
-                                </div>
-                                <div class="actions">
-                                  <input type="submit" name="commit" value="Log in">
-                                </div>
-                              </form>
-                            </div>
-                          </div>                       
+                      <nav role="navigation">
+                        <ul class="nav nav-tabs">
+                          <li role="presentation" class="active"><a href="#sign-in" data-toggle="tab">Sign In</a></li>
+                          <li role="presentation"><a href="#sign-up" data-toggle="tab">Sign Up</a></li>
+                        </ul> 
+
+                        <div class="tab-content">
+                          <div role="tabpanel" class="tab-pane active" id="sign-in">
+                            <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="QqprIBbAFMzDxCC2hyxozzRh/R/ezik/5gOMjQQUJmUeepZDgNLOJ772rRwOB5JN87XQHTsmwWzUNA6gf8K+sA==">
+                              <div class="field">
+                                <label for="user_email">Email</label><br>
+                                <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+                              </div>
+                              <div class="field">
+                                <label for="user_password">Password</label><br>
+                                <input autocomplete="off" type="password" name="user[password]" id="user_password">
+                              </div>
+                              <div class="field">
+                                <input name="user[remember_me]" type="hidden" value="0"><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me">
+                                <label for="user_remember_me">Remember me</label>
+                              </div>
+                              <div class="actions">
+                                <input type="submit" name="commit" value="Log in">
+                              </div>
+                            </form>
+                          </div>
+                          <div role="tabpanel" class="tab-pane" id="sign-up">
+                            <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="UlOQDkwhL7QO/GY9F68ukEXXuiD4htyj+AnBVk8peuMbHy718FT6lMVKUBZXffPnSn7sKMr/cbcfgetjET7miA==">
+                              <div class="field">
+                                <label for="user_email">Email</label><br>
+                                <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
+                              </div>
+                              <div class="field">
+                                <label for="user_password">Password</label>
+                                <em>(8 characters minimum)</em>
+                                <br>
+                                <input autocomplete="off" type="password" name="user[password]" id="user_password">
+                              </div>
+                              <div class="field">
+                                <label for="user_password_confirmation">Password confirmation</label><br>
+                                <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+                              </div><br>
+                              <div class="actions">
+                                <input type="submit" name="commit" value="Sign up">
+                              </div>
+                            </form>
+                          </div>
                         </div>
-                        <div class="tab-pane" id="sign-up">
-                          <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="UlOQDkwhL7QO/GY9F68ukEXXuiD4htyj+AnBVk8peuMbHy718FT6lMVKUBZXffPnSn7sKMr/cbcfgetjET7miA==">
-                            <div class="field">
-                              <label for="user_email">Email</label><br>
-                              <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email">
-                            </div>
-                            <div class="field">
-                              <label for="user_password">Password</label>
-                              <em>(8 characters minimum)</em>
-                              <br>
-                              <input autocomplete="off" type="password" name="user[password]" id="user_password">
-                            </div>
-                            <div class="field">
-                              <label for="user_password_confirmation">Password confirmation</label><br>
-                              <input autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation">
-                            </div><br>
-                            <div class="actions">
-                              <input type="submit" name="commit" value="Sign up">
-                            </div>
-                          </form>
-                        </div>
-                      </div>
+                      </nav>      
                     </div>
-                  </div>
-                </div>
-              </div>
+                    <div class="modal-footer">
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
             <% end %>
           </ul>
         </div><!--/.nav-collapse -->

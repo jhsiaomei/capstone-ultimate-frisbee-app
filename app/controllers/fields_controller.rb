@@ -32,7 +32,12 @@ class FieldsController < ApplicationController
     else
       @field_placeholder = "#{@field.intersection}"
     end
-    @fields = Field.all
+    field_conditions = @field.field_conditions
+    if field_conditions == [] || field_conditions == nil
+      @field_conditions = false
+    else
+      @field_conditions = field_conditions.order(created_at: :desc).limit(3)
+    end
   end
 
   def edit

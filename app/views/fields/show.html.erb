@@ -21,13 +21,13 @@
   </div>
   <div class="col-md-6" id="map_padding">
     <h3>Field Conditions</h3>
-    <% if @field.field_conditions == [] %>
+    <% if @field_conditions == false %>
       <p>No conditions for this field have been reported.</p>
     <% else %>
-      <% @field.field_conditions.each do |field_condition| %>
+      <% @field_conditions.each do |field_condition| %>
+        <hr>
         <p><%= field_condition.condition %></p>
         <p><i>created on <%= field_condition.created_at.advance(:hours => -6).strftime("%A, %B %d at %I:%M %p") %></i></p>
-        <hr>
       <% end %>
     <% end %>
   </div>
@@ -65,6 +65,7 @@
       </div>
     <% end %>
   </div>
+</div>
 
 
 <script>

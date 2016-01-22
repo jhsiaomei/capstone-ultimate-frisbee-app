@@ -47,22 +47,24 @@
     </div>
   </div>
   <div class="col-md-6">
+    <% if current_user %>
     <h4 style="margin-top:0px">At the field? Add a condition update!</h4>
-    <%= form_tag '/field_conditions', method: :post do %>
-      <div class="row">
-        <div class="col-md-10">
-          <%= hidden_field_tag :field_id, @field.id %>
-          <div class="form-group">
-            <%= text_field_tag :condition, nil, class: "form-control" %>
+      <%= form_tag '/field_conditions', method: :post do %>
+        <div class="row">
+          <div class="col-md-10">
+            <%= hidden_field_tag :field_id, @field.id %>
+            <div class="form-group">
+              <%= text_field_tag :condition, nil, class: "form-control" %>
+            </div>
+            <% hidden_field_tag :user_id, current_user.id %>
           </div>
-          <% hidden_field_tag :user_id, current_user.id %>
-        </div>
-        <div class="col-md-2">
-          <div>
-            <%= button_tag 'Submit', class: "btn btn-default" %>
+          <div class="col-md-2">
+            <div>
+              <%= button_tag 'Submit', class: "btn btn-default" %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

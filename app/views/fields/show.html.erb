@@ -29,8 +29,25 @@
         <p><i>created on <%= field_condition.created_at.advance(:hours => -6).strftime("%A, %B %d at %I:%M %p") %></i></p>
         <hr>
       <% end %>
-    <% end %><br />
-    <h4>At the field? Add a condition update!</h4>
+    <% end %>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-md-6">
+    <div style="padding-top:10px">&nbsp</div>
+    <div id="outer">
+      <div class="inner">
+        <a href="/fields"><button class="btn btn-default">View All Fields</button></a>
+      </div>
+      <div class="inner">
+        <a href="/fields/<%= @field.id %>/edit"><button class="btn btn-default">Update this Field</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4 style="margin-top:0px">At the field? Add a condition update!</h4>
     <%= form_tag '/field_conditions', method: :post do %>
       <div class="row">
         <div class="col-md-10">
@@ -48,22 +65,6 @@
       </div>
     <% end %>
   </div>
-</div>
-
-
-
-
-
-
-<hr>
-<div id="outer">
-  <div class="inner">
-    <a href="/fields"><button class="btn btn-default">View All Fields</button></a>
-  </div>
-  <div class="inner">
-    <a href="/fields/<%= @field.id %>/edit"><button class="btn btn-default">Update this Field</button></a>
-  </div>
-</div>
 
 
 <script>

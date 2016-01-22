@@ -61,7 +61,7 @@ Rails.application.routes.draw do
       get '/fields' => 'fields#index'
       # get '/field_conditions' => 'field_conditions#index'
       # get '/user_groups' => 'user_groups#index'
-      # get '/user_events' => 'user_events#index'
+      get '/user_events' => 'user_events#index'
     end
   end
 end
